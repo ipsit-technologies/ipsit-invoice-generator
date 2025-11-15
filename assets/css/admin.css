@@ -1,0 +1,417 @@
+/**
+ * Main Admin Stylesheet
+ * 
+ * Additional admin-specific overrides and enhancements
+ * Note: CSS modules (variables, base, components, utilities) are loaded separately
+ * via class-ig-assets.php for better control and caching
+ */
+
+/* WordPress Admin Integration */
+.wrap {
+    max-width: var(--ig-container-max-width);
+    background: transparent;
+    padding: 32px;
+    margin: 20px auto;
+}
+
+/* Page Header */
+.ig-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--ig-border-color);
+}
+
+.ig-page-header h1 {
+    margin: 0;
+    color: var(--ig-text-primary);
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.ig-page-header .page-title-action {
+    margin-left: auto;
+}
+
+.ig-page-actions {
+    display: flex;
+    gap: var(--ig-spacing-sm);
+    flex-wrap: wrap;
+    margin-left: auto;
+}
+
+.ig-page-actions .page-title-action {
+    margin-left: 0;
+}
+
+.wrap h1 {
+    margin-bottom: 32px;
+    color: var(--ig-text-primary);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+/* Section Headers in Forms */
+#ig-invoice-form h2,
+#ig-client-form h2,
+#ig-company-form h2,
+#ig-settings-form h2 {
+    margin-top: 40px;
+    margin-bottom: 24px;
+    padding: 0 0 12px 0;
+    color: var(--ig-text-primary);
+    border-bottom: 2px solid var(--ig-border-color);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    position: relative;
+}
+
+#ig-invoice-form h2::after,
+#ig-client-form h2::after,
+#ig-company-form h2::after,
+#ig-settings-form h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--ig-color-primary);
+    transition: width var(--ig-transition-base);
+}
+
+#ig-invoice-form h2:hover::after,
+#ig-client-form h2:hover::after,
+#ig-company-form h2:hover::after,
+#ig-settings-form h2:hover::after {
+    width: 120px;
+}
+
+/* Form Table Enhancements */
+.form-table {
+    background: var(--ig-bg-primary);
+    border-radius: var(--ig-radius-xl);
+    padding: 24px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--ig-border-color);
+    margin-bottom: 24px;
+}
+
+.form-table th {
+    font-weight: var(--ig-font-weight-semibold);
+    color: var(--ig-text-primary);
+    padding: var(--ig-spacing-md) var(--ig-spacing-lg) var(--ig-spacing-md);
+    font-size: var(--ig-font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: 200px;
+    vertical-align: top;
+    padding-top: var(--ig-spacing-lg);
+}
+
+.form-table td {
+    padding: var(--ig-spacing-md) var(--ig-spacing-lg);
+    vertical-align: top;
+    padding-top: var(--ig-spacing-lg);
+}
+
+.form-table tr {
+    border-bottom: 1px solid var(--ig-border-color-light);
+    transition: background-color var(--ig-transition-fast);
+}
+
+.form-table tr:hover {
+    background-color: var(--ig-bg-hover);
+}
+
+.form-table tr:last-child {
+    border-bottom: none;
+}
+
+.form-table .description {
+    margin-top: var(--ig-spacing-xs);
+    font-size: var(--ig-font-size-sm);
+    color: var(--ig-text-secondary);
+    font-style: italic;
+}
+
+.form-table input[type="text"],
+.form-table input[type="number"],
+.form-table input[type="email"],
+.form-table input[type="url"],
+.form-table select,
+.form-table textarea {
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-table input[type="color"] {
+    width: 60px;
+    height: 40px;
+    border-radius: var(--ig-radius-md);
+    cursor: pointer;
+    border: 2px solid var(--ig-border-color);
+    transition: border-color var(--ig-transition-fast);
+}
+
+.form-table input[type="color"]:hover {
+    border-color: var(--ig-color-primary);
+}
+
+.form-table input[type="checkbox"] {
+    width: auto;
+    max-width: none;
+    margin-right: var(--ig-spacing-sm);
+}
+
+/* WordPress Button Integration */
+.button.button-primary,
+a.button.button-primary {
+    background: var(--ig-color-primary);
+    border: none;
+    color: var(--ig-text-inverse);
+    transition: all var(--ig-transition-base);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: var(--ig-radius-lg);
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+.button.button-primary:hover,
+.button.button-primary:focus,
+a.button.button-primary:hover,
+a.button.button-primary:focus {
+    background: var(--ig-color-primary-dark);
+    color: var(--ig-text-inverse);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+    text-decoration: none;
+}
+
+.button.button-primary:active,
+a.button.button-primary:active {
+    transform: translateY(0);
+    box-shadow: var(--ig-shadow-sm);
+}
+
+.button,
+a.button {
+    border-radius: var(--ig-radius-lg);
+    transition: all var(--ig-transition-base);
+    font-weight: 500;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    border: 1px solid var(--ig-border-color);
+    background-color: var(--ig-bg-primary);
+    color: var(--ig-text-primary);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.button:hover,
+.button:focus,
+a.button:hover,
+a.button:focus {
+    transform: translateY(-1px);
+    box-shadow: var(--ig-shadow-md);
+    text-decoration: none;
+    border-color: var(--ig-border-color-dark);
+    background-color: var(--ig-bg-secondary);
+    color: var(--ig-text-primary);
+}
+
+.button.button-small,
+a.button.button-small {
+    padding: var(--ig-spacing-xs) var(--ig-spacing-md);
+    font-size: var(--ig-font-size-sm);
+}
+
+/* Submit Section */
+.submit {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ig-border-color);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.submit .button {
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+/* Logo Image Styling */
+.ig-logo-preview {
+    max-height: 100px;
+    margin-bottom: var(--ig-spacing-md);
+    display: block;
+    border-radius: var(--ig-radius-md);
+    border: 1px solid var(--ig-border-color);
+    padding: var(--ig-spacing-sm);
+    background: var(--ig-bg-primary);
+}
+
+/* Payment Method Fields Toggle */
+.ig-payment-fields-hidden {
+    display: none !important;
+}
+
+/* Modal Large Variant */
+.ig-modal-content.ig-modal-large {
+    max-width: 800px;
+}
+
+/* Additional Responsive Enhancements */
+@media (max-width: 782px) {
+    .form-table th,
+    .form-table td {
+        display: block;
+        width: 100%;
+        padding: var(--ig-spacing-sm) 0;
+    }
+    
+    .form-table th {
+        padding-bottom: var(--ig-spacing-xs);
+    }
+}
+
+/* ============================================
+   DASHBOARD WIDGETS
+   ============================================ */
+
+.ig-dashboard-widgets {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.ig-widget {
+    background: var(--ig-bg-primary);
+    border-radius: var(--ig-radius-xl);
+    padding: 24px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--ig-border-color);
+    transition: all var(--ig-transition-base);
+}
+
+.ig-widget:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.ig-widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--ig-border-color);
+}
+
+.ig-widget-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ig-text-primary);
+    letter-spacing: -0.01em;
+}
+
+.ig-widget-footer {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--ig-border-color);
+}
+
+/* ============================================
+   CONTENT CARD
+   ============================================ */
+
+.ig-content-card {
+    background: var(--ig-bg-primary);
+    border-radius: var(--ig-radius-xl);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--ig-border-color);
+    padding: 24px;
+    margin-bottom: 24px;
+    transition: all var(--ig-transition-base);
+}
+
+.ig-content-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* ============================================
+   FILTER BAR
+   ============================================ */
+
+.ig-filter-bar {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--ig-border-color);
+}
+
+.ig-filter-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.ig-filter-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    border-radius: var(--ig-radius-full);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--ig-transition-fast);
+    border: 1px solid var(--ig-border-color);
+    background-color: var(--ig-bg-primary);
+    color: var(--ig-text-primary);
+    cursor: pointer;
+    white-space: nowrap;
+    line-height: 1.5;
+}
+
+.ig-filter-button:hover {
+    background-color: var(--ig-bg-secondary);
+    border-color: var(--ig-border-color-dark);
+    color: var(--ig-text-primary);
+    text-decoration: none;
+}
+
+.ig-filter-button.ig-filter-active {
+    background: var(--ig-color-primary);
+    color: #ffffff;
+    border-color: var(--ig-color-primary);
+}
+
+.ig-filter-button.ig-filter-active:hover {
+    background: var(--ig-color-primary-dark);
+    border-color: var(--ig-color-primary-dark);
+    color: #ffffff;
+}

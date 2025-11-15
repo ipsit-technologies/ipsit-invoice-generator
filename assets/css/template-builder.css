@@ -1,0 +1,149 @@
+/**
+ * Template Builder Specific Styles
+ * 
+ * Styles specific to the template builder interface
+ */
+
+/* Import variables for consistency */
+@import url('variables.css');
+
+/* Builder Container */
+.ig-builder-container {
+    display: flex;
+    gap: var(--ig-spacing-xl);
+    margin-top: var(--ig-spacing-xl);
+}
+
+/* Field Manager Styles (moved from inline styles) */
+.ig-field-manager {
+    display: flex;
+    gap: var(--ig-spacing-xl);
+    margin: var(--ig-spacing-xl) 0;
+    padding: var(--ig-spacing-xl);
+    background: var(--ig-bg-secondary);
+    border: 1px solid var(--ig-border-color);
+    border-radius: var(--ig-radius-lg);
+}
+
+.ig-available-fields,
+.ig-selected-fields {
+    flex: 1;
+}
+
+.ig-field-list {
+    list-style: none;
+    margin: 0;
+    padding: var(--ig-spacing-md);
+    min-height: 100px;
+    background: var(--ig-bg-primary);
+    border: 1px solid var(--ig-border-color);
+    border-radius: var(--ig-radius-md);
+}
+
+.ig-field-item {
+    padding: var(--ig-spacing-md);
+    margin: var(--ig-spacing-sm) 0;
+    background: var(--ig-bg-primary);
+    border: 1px solid var(--ig-border-color-dark);
+    border-radius: var(--ig-radius-md);
+    cursor: move;
+    display: flex;
+    align-items: center;
+    gap: var(--ig-spacing-md);
+    transition: all var(--ig-transition-fast);
+}
+
+.ig-field-item:hover {
+    background: var(--ig-bg-hover);
+    border-color: var(--ig-color-primary);
+    box-shadow: var(--ig-shadow-sm);
+}
+
+.ig-field-item.ig-selected {
+    background: var(--ig-color-success-bg);
+    border-color: var(--ig-color-success);
+}
+
+.ig-field-item .dashicons {
+    color: var(--ig-text-secondary);
+    flex-shrink: 0;
+}
+
+.ig-field-label {
+    flex: 1;
+    padding: var(--ig-spacing-sm);
+    border: 1px solid var(--ig-border-color);
+    border-radius: var(--ig-radius-sm);
+    font-size: var(--ig-font-size-sm);
+}
+
+.ig-field-name {
+    font-size: var(--ig-font-size-xs);
+    color: var(--ig-text-muted);
+    font-style: italic;
+    margin-top: var(--ig-spacing-xs);
+}
+
+.ig-sortable {
+    min-height: 50px;
+}
+
+.ig-sortable .ig-field-item {
+    cursor: move;
+}
+
+.ig-sortable .ig-field-item.ui-sortable-helper {
+    opacity: 0.8;
+    box-shadow: var(--ig-shadow-lg);
+    transform: rotate(2deg);
+}
+
+/* Section Headers */
+.ig-section-header {
+    margin-top: var(--ig-spacing-lg);
+    font-size: var(--ig-font-size-md);
+    font-weight: var(--ig-font-weight-semibold);
+    color: var(--ig-text-primary);
+}
+
+/* Drop Zone */
+.ig-drop-zone {
+    min-height: 200px;
+    border: 2px dashed var(--ig-border-color-dark);
+    padding: var(--ig-spacing-xl);
+    margin: var(--ig-spacing-md) 0;
+    border-radius: var(--ig-radius-md);
+    transition: all var(--ig-transition-base);
+}
+
+.ig-drop-zone.drag-over {
+    border-color: var(--ig-color-primary);
+    background: var(--ig-color-info-bg);
+}
+
+/* Builder Element */
+.ig-builder-element {
+    padding: var(--ig-spacing-md);
+    margin: var(--ig-spacing-sm) 0;
+    background: var(--ig-bg-primary);
+    border: 1px solid var(--ig-border-color);
+    border-radius: var(--ig-radius-md);
+    cursor: move;
+    transition: all var(--ig-transition-fast);
+}
+
+.ig-builder-element.ui-sortable-helper {
+    opacity: 0.8;
+    box-shadow: var(--ig-shadow-lg);
+}
+
+/* Responsive */
+@media screen and (max-width: 1200px) {
+    .ig-builder-container {
+        flex-direction: column;
+    }
+    
+    .ig-field-manager {
+        flex-direction: column;
+    }
+}

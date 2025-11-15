@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            font-size: 12px;
+        }
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        .company-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .company-info img {
+            max-width: 150px;
+            max-height: 80px;
+            margin-bottom: 10px;
+        }
+        .company-info h1 {
+            margin: 0 0 10px 0;
+            font-size: 24px;
+            color: #2c3e50;
+        }
+        .invoice-info {
+            text-align: right;
+        }
+        .invoice-info h2 {
+            margin: 0 0 15px 0;
+            font-size: 28px;
+            color: #2c3e50;
+        }
+        .invoice-info .invoice-details-info {
+            margin-top: 15px;
+        }
+        .invoice-info .invoice-details-info p {
+            margin: 5px 0;
+        }
+        .invoice-details {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            width: 100%;
+        }
+        .company-details, .client-details {
+            width: 48%;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .section-title {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .company-details p, .client-details p {
+            margin: 5px 0;
+        }
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        .items-table th,
+        .items-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .items-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .items-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .items-table .text-right {
+            text-align: right;
+        }
+        .totals-wrapper {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            width: 100%;
+        }
+        .payment-info, .totals {
+            width: 48%;
+            display: inline-block;
+            vertical-align: top;
+            border-top: 2px solid #eee;
+            padding-top: 20px;
+        }
+        .payment-info h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .payment-info p {
+            margin: 5px 0;
+            font-size: 12px;
+        }
+        .totals {
+            text-align: right;
+        }
+        .totals table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .totals td {
+            padding: 8px 12px;
+        }
+        .totals .label {
+            text-align: right;
+            font-weight: bold;
+        }
+        .totals .amount {
+            text-align: right;
+        }
+        .total-row {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        .total-row .amount {
+            color: #2c3e50;
+        }
+        .invoice-footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            font-size: 14px;
+        }
+        .invoice-footer p {
+            margin: 5px 0;
+        }
+        .notes {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-header">
+        <div class="company-info">
+            <img src="https://via.placeholder.com/150x80?text=LOGO" alt="Logo" />
+            <h1>IPSIT TECHNOLOGY</h1>
+        </div>
+        <div class="invoice-info">
+            <h2>INVOICE</h2>
+            <div class="invoice-details-info">
+                <p><strong>Invoice #:</strong> INV-0001</p>
+                <p><strong>Date:</strong> 2025-11-11</p>
+                <p><strong>Due Date:</strong> 2025-12-11</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="invoice-details">
+        <div class="company-details">
+            <div class="section-title">Bill From:</div>
+            <p><strong>IPSIT TECHNOLOGY</strong></p>
+            <p>Mahmood Nagar, Malihabad<br>Lucknow, Uttar Pradesh, 227111</p>
+            <p>Tel: 8604853469</p>
+            <p>E-Mail: ipsit@gmail.com</p>
+        </div>
+        <div class="client-details">
+            <div class="section-title">Bill To:</div>
+            <p><strong>John Doe</strong></p>
+            <p>john.doe@example.com</p>
+            <p>Tel: 1234567890</p>
+            <p>123 Main Street<br>New York, NY, 10001</p>
+        </div>
+    </div>
+    
+    <table class="items-table">
+        <thead>
+            <tr>
+                <th>Project Description</th>
+                <th class="text-right">Project Price</th>
+                <th class="text-right">Project Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Website Development</td>
+                <td class="text-right">$1,500.00</td>
+                <td class="text-right">$1,500.00</td>
+            </tr>
+            <tr>
+                <td>Logo Design</td>
+                <td class="text-right">$300.00</td>
+                <td class="text-right">$300.00</td>
+            </tr>
+            <tr>
+                <td>SEO Optimization</td>
+                <td class="text-right">$500.00</td>
+                <td class="text-right">$500.00</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="totals-wrapper">
+        <div class="payment-info">
+            <h3>Payment Method: Bank Transfer</h3>
+            <p><strong>Bank Name:</strong> Example Bank</p>
+            <p><strong>Account Number:</strong> 1234567890</p>
+            <p><strong>Account Title:</strong> IPSIT TECHNOLOGY</p>
+            <p><strong>Account Branch:</strong> Main Branch</p>
+            <p><strong>IBAN:</strong> DE89 3704 0044 0532 0130 00</p>
+        </div>
+        
+        <div class="totals">
+            <table>
+                <tr>
+                    <td class="label">Subtotal:</td>
+                    <td class="amount">$2,300.00</td>
+                </tr>
+                <tr>
+                    <td class="label">Tax:</td>
+                    <td class="amount">$230.00</td>
+                </tr>
+                <tr class="total-row">
+                    <td class="label">Total:</td>
+                    <td class="amount">$2,530.00</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class="notes">
+        <strong>Notes:</strong>
+        <div>Thank you for your business. Payment is due within 30 days.</div>
+    </div>
+    
+    <div class="invoice-footer">
+        <p>Thank you for your business!</p>
+    </div>
+</body>
+</html>

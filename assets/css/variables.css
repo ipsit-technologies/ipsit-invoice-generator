@@ -1,0 +1,161 @@
+/**
+ * CSS Variables (Custom Properties)
+ * 
+ * Design system variables for IPSIT Invoice Generator
+ * These can be customized via plugin settings
+ */
+
+:root {
+    /* Color Palette - Primary */
+    --ig-color-primary: #4F46E5;
+    --ig-color-primary-dark: #4338CA;
+    --ig-color-primary-light: #818CF8;
+    --ig-color-primary-lighter: #C7D2FE;
+    
+    /* Color Palette - Secondary */
+    --ig-color-secondary: #64748B;
+    --ig-color-secondary-dark: #475569;
+    --ig-color-secondary-light: #94A3B8;
+    
+    /* Semantic Colors */
+    --ig-color-success: #10B981;
+    --ig-color-success-dark: #059669;
+    --ig-color-success-light: #34D399;
+    --ig-color-success-bg: #ECFDF5;
+    
+    --ig-color-error: #EF4444;
+    --ig-color-error-dark: #DC2626;
+    --ig-color-error-light: #F87171;
+    --ig-color-error-bg: #FEF2F2;
+    
+    --ig-color-warning: #F59E0B;
+    --ig-color-warning-dark: #D97706;
+    --ig-color-warning-light: #FBBF24;
+    --ig-color-warning-bg: #FFFBEB;
+    
+    --ig-color-info: #3B82F6;
+    --ig-color-info-dark: #2563EB;
+    --ig-color-info-light: #60A5FA;
+    --ig-color-info-bg: #EFF6FF;
+    
+    /* Neutral Colors - Gray Scale */
+    --ig-color-gray-50: #F9FAFB;
+    --ig-color-gray-100: #F3F4F6;
+    --ig-color-gray-200: #E5E7EB;
+    --ig-color-gray-300: #D1D5DB;
+    --ig-color-gray-400: #9CA3AF;
+    --ig-color-gray-500: #6B7280;
+    --ig-color-gray-600: #4B5563;
+    --ig-color-gray-700: #374151;
+    --ig-color-gray-800: #1F2937;
+    --ig-color-gray-900: #111827;
+    
+    /* Background Colors */
+    --ig-bg-primary: #FFFFFF;
+    --ig-bg-secondary: #F9FAFB;
+    --ig-bg-tertiary: #F3F4F6;
+    --ig-bg-hover: #F3F4F6;
+    --ig-bg-active: #E5E7EB;
+    
+    /* Text Colors */
+    --ig-text-primary: #111827;
+    --ig-text-secondary: #4B5563;
+    --ig-text-tertiary: #6B7280;
+    --ig-text-muted: #9CA3AF;
+    --ig-text-inverse: #FFFFFF;
+    
+    /* Border Colors */
+    --ig-border-color: #E5E7EB;
+    --ig-border-color-light: #F3F4F6;
+    --ig-border-color-dark: #D1D5DB;
+    --ig-border-color-focus: var(--ig-color-primary);
+    
+    /* Spacing Scale */
+    --ig-spacing-xs: 4px;
+    --ig-spacing-sm: 8px;
+    --ig-spacing-md: 12px;
+    --ig-spacing-lg: 16px;
+    --ig-spacing-xl: 20px;
+    --ig-spacing-2xl: 24px;
+    --ig-spacing-3xl: 32px;
+    --ig-spacing-4xl: 40px;
+    
+    /* Typography */
+    --ig-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    --ig-font-family-mono: "Courier New", Courier, monospace;
+    
+    --ig-font-size-xs: 11px;
+    --ig-font-size-sm: 12px;
+    --ig-font-size-base: 13px;
+    --ig-font-size-md: 14px;
+    --ig-font-size-lg: 16px;
+    --ig-font-size-xl: 18px;
+    --ig-font-size-2xl: 20px;
+    --ig-font-size-3xl: 24px;
+    --ig-font-size-4xl: 32px;
+    
+    --ig-font-weight-normal: 400;
+    --ig-font-weight-medium: 500;
+    --ig-font-weight-semibold: 600;
+    --ig-font-weight-bold: 700;
+    
+    --ig-line-height-tight: 1.2;
+    --ig-line-height-normal: 1.5;
+    --ig-line-height-relaxed: 1.75;
+    
+    /* Border Radius */
+    --ig-radius-sm: 4px;
+    --ig-radius-md: 6px;
+    --ig-radius-lg: 8px;
+    --ig-radius-xl: 12px;
+    --ig-radius-2xl: 16px;
+    --ig-radius-full: 9999px;
+    
+    /* Shadows */
+    --ig-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --ig-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --ig-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.10), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --ig-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.10), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --ig-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    
+    /* Transitions */
+    --ig-transition-fast: 150ms ease-in-out;
+    --ig-transition-base: 200ms ease-in-out;
+    --ig-transition-slow: 300ms ease-in-out;
+    
+    /* Z-Index Scale */
+    --ig-z-dropdown: 1000;
+    --ig-z-sticky: 1020;
+    --ig-z-fixed: 1030;
+    --ig-z-modal-backdrop: 1040;
+    --ig-z-modal: 1050;
+    --ig-z-popover: 1060;
+    --ig-z-tooltip: 1070;
+    
+    /* Breakpoints */
+    --ig-breakpoint-sm: 576px;
+    --ig-breakpoint-md: 768px;
+    --ig-breakpoint-lg: 1024px;
+    --ig-breakpoint-xl: 1280px;
+    
+    /* Layout */
+    --ig-container-max-width: 1200px;
+    --ig-sidebar-width: 250px;
+    --ig-sidebar-collapsed-width: 60px;
+    
+    /* Form Elements */
+    --ig-input-height: 30px;
+    --ig-input-padding-x: 8px;
+    --ig-input-padding-y: 6px;
+    --ig-input-border-width: 1px;
+    --ig-input-focus-ring-width: 2px;
+    --ig-input-focus-ring-offset: 2px;
+}
+
+/* Dark mode support (optional, for future) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Can be extended for dark mode */
+    }
+}
+

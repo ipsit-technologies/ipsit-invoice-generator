@@ -1,0 +1,354 @@
+/**
+ * Utility Classes
+ * 
+ * Reusable utility classes for spacing, display, visibility, etc.
+ */
+
+/* Display Utilities */
+.ig-hidden {
+    display: none !important;
+}
+
+.ig-block {
+    display: block !important;
+}
+
+.ig-inline {
+    display: inline !important;
+}
+
+.ig-inline-block {
+    display: inline-block !important;
+}
+
+.ig-flex {
+    display: flex !important;
+}
+
+.ig-inline-flex {
+    display: inline-flex !important;
+}
+
+.ig-grid {
+    display: grid !important;
+}
+
+/* Visibility Utilities */
+.ig-visible {
+    visibility: visible !important;
+}
+
+.ig-invisible {
+    visibility: hidden !important;
+}
+
+/* Flexbox Utilities */
+.ig-flex-row {
+    flex-direction: row !important;
+}
+
+.ig-flex-column {
+    flex-direction: column !important;
+}
+
+.ig-flex-wrap {
+    flex-wrap: wrap !important;
+}
+
+.ig-flex-nowrap {
+    flex-wrap: nowrap !important;
+}
+
+.ig-justify-start {
+    justify-content: flex-start !important;
+}
+
+.ig-justify-end {
+    justify-content: flex-end !important;
+}
+
+.ig-justify-center {
+    justify-content: center !important;
+}
+
+.ig-justify-between {
+    justify-content: space-between !important;
+}
+
+.ig-justify-around {
+    justify-content: space-around !important;
+}
+
+.ig-align-start {
+    align-items: flex-start !important;
+}
+
+.ig-align-end {
+    align-items: flex-end !important;
+}
+
+.ig-align-center {
+    align-items: center !important;
+}
+
+.ig-align-stretch {
+    align-items: stretch !important;
+}
+
+.ig-flex-1 {
+    flex: 1 1 0% !important;
+}
+
+.ig-flex-auto {
+    flex: 1 1 auto !important;
+}
+
+.ig-flex-none {
+    flex: none !important;
+}
+
+/* Gap Utilities */
+.ig-gap-xs {
+    gap: var(--ig-spacing-xs) !important;
+}
+
+.ig-gap-sm {
+    gap: var(--ig-spacing-sm) !important;
+}
+
+.ig-gap-md {
+    gap: var(--ig-spacing-md) !important;
+}
+
+.ig-gap-lg {
+    gap: var(--ig-spacing-lg) !important;
+}
+
+.ig-gap-xl {
+    gap: var(--ig-spacing-xl) !important;
+}
+
+.ig-gap-2xl {
+    gap: var(--ig-spacing-2xl) !important;
+}
+
+/* Margin Utilities */
+.ig-m-0 {
+    margin: 0 !important;
+}
+
+.ig-mt-0 {
+    margin-top: 0 !important;
+}
+
+.ig-mr-0 {
+    margin-right: 0 !important;
+}
+
+.ig-mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.ig-ml-0 {
+    margin-left: 0 !important;
+}
+
+.ig-m-auto {
+    margin: auto !important;
+}
+
+.ig-mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.ig-my-auto {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+}
+
+/* Padding Utilities */
+.ig-p-0 {
+    padding: 0 !important;
+}
+
+.ig-pt-0 {
+    padding-top: 0 !important;
+}
+
+.ig-pr-0 {
+    padding-right: 0 !important;
+}
+
+.ig-pb-0 {
+    padding-bottom: 0 !important;
+}
+
+.ig-pl-0 {
+    padding-left: 0 !important;
+}
+
+/* Text Utilities */
+.ig-text-left {
+    text-align: left !important;
+}
+
+.ig-text-center {
+    text-align: center !important;
+}
+
+.ig-text-right {
+    text-align: right !important;
+}
+
+.ig-text-uppercase {
+    text-transform: uppercase !important;
+}
+
+.ig-text-lowercase {
+    text-transform: lowercase !important;
+}
+
+.ig-text-capitalize {
+    text-transform: capitalize !important;
+}
+
+.ig-font-weight-normal {
+    font-weight: var(--ig-font-weight-normal) !important;
+}
+
+.ig-font-weight-medium {
+    font-weight: var(--ig-font-weight-medium) !important;
+}
+
+.ig-font-weight-semibold {
+    font-weight: var(--ig-font-weight-semibold) !important;
+}
+
+.ig-font-weight-bold {
+    font-weight: var(--ig-font-weight-bold) !important;
+}
+
+.ig-text-primary {
+    color: var(--ig-text-primary) !important;
+}
+
+.ig-text-secondary {
+    color: var(--ig-text-secondary) !important;
+}
+
+.ig-text-tertiary {
+    color: var(--ig-text-tertiary) !important;
+}
+
+.ig-text-muted {
+    color: var(--ig-text-muted) !important;
+}
+
+.ig-text-success {
+    color: var(--ig-color-success) !important;
+}
+
+.ig-text-error {
+    color: var(--ig-color-error) !important;
+}
+
+.ig-text-warning {
+    color: var(--ig-color-warning) !important;
+}
+
+.ig-text-info {
+    color: var(--ig-color-info) !important;
+}
+
+/* Width Utilities */
+.ig-w-full {
+    width: 100% !important;
+}
+
+.ig-w-auto {
+    width: auto !important;
+}
+
+.ig-max-w-full {
+    max-width: 100% !important;
+}
+
+/* Position Utilities */
+.ig-relative {
+    position: relative !important;
+}
+
+.ig-absolute {
+    position: absolute !important;
+}
+
+.ig-fixed {
+    position: fixed !important;
+}
+
+.ig-sticky {
+    position: sticky !important;
+}
+
+/* Overflow Utilities */
+.ig-overflow-auto {
+    overflow: auto !important;
+}
+
+.ig-overflow-hidden {
+    overflow: hidden !important;
+}
+
+.ig-overflow-scroll {
+    overflow: scroll !important;
+}
+
+.ig-overflow-x-auto {
+    overflow-x: auto !important;
+}
+
+.ig-overflow-y-auto {
+    overflow-y: auto !important;
+}
+
+/* Cursor Utilities */
+.ig-cursor-pointer {
+    cursor: pointer !important;
+}
+
+.ig-cursor-move {
+    cursor: move !important;
+}
+
+.ig-cursor-not-allowed {
+    cursor: not-allowed !important;
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+    .ig-hidden-mobile {
+        display: none !important;
+    }
+    
+    .ig-block-mobile {
+        display: block !important;
+    }
+    
+    .ig-flex-mobile {
+        display: flex !important;
+    }
+    
+    .ig-flex-column-mobile {
+        flex-direction: column !important;
+    }
+    
+    .ig-text-center-mobile {
+        text-align: center !important;
+    }
+    
+    .ig-w-full-mobile {
+        width: 100% !important;
+    }
+}
+

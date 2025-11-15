@@ -1,0 +1,172 @@
+/**
+ * Base Styles
+ * 
+ * Reset, typography, and base element styles
+ */
+
+/* Reset & Normalize */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Typography */
+body {
+    font-family: var(--ig-font-family);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ig-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--ig-bg-secondary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 16px 0;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ig-text-primary);
+    letter-spacing: -0.01em;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: 24px;
+    margin-top: 32px;
+    margin-bottom: 16px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+h4 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+}
+
+p {
+    margin: 0 0 var(--ig-spacing-md) 0;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* Links */
+a {
+    color: var(--ig-color-primary);
+    text-decoration: none;
+    transition: color var(--ig-transition-fast);
+}
+
+a:hover,
+a:focus {
+    color: var(--ig-color-primary-dark);
+}
+
+a:focus {
+    outline: 2px solid rgba(79, 70, 229, 0.2);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Code & Pre */
+code,
+kbd,
+samp,
+pre {
+    font-family: var(--ig-font-family-mono);
+    font-size: var(--ig-font-size-sm);
+}
+
+code {
+    padding: 2px 6px;
+    background: var(--ig-bg-tertiary);
+    border-radius: var(--ig-radius-sm);
+    color: var(--ig-color-error);
+}
+
+pre {
+    padding: var(--ig-spacing-md);
+    background: var(--ig-bg-secondary);
+    border: 1px solid var(--ig-border-color);
+    border-radius: var(--ig-radius-md);
+    overflow-x: auto;
+}
+
+pre code {
+    padding: 0;
+    background: transparent;
+    color: inherit;
+}
+
+/* Lists */
+ul,
+ol {
+    margin: 0 0 var(--ig-spacing-md) 0;
+    padding-left: var(--ig-spacing-2xl);
+}
+
+ul {
+    list-style: disc;
+}
+
+ol {
+    list-style: decimal;
+}
+
+li {
+    margin-bottom: var(--ig-spacing-xs);
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Horizontal Rule */
+hr {
+    margin: var(--ig-spacing-xl) 0;
+    border: 0;
+    border-top: 1px solid var(--ig-border-color);
+}
+
+/* Description Text */
+.description {
+    font-size: var(--ig-font-size-sm);
+    color: var(--ig-text-secondary);
+    margin-top: var(--ig-spacing-xs);
+    display: block;
+}
+
+/* Required Indicator */
+.required {
+    color: var(--ig-color-error);
+    font-weight: var(--ig-font-weight-semibold);
+}
+
+/* Screen Reader Only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+

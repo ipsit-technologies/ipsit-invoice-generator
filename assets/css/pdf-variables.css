@@ -1,0 +1,59 @@
+/**
+ * PDF Template Variables
+ * 
+ * CSS variables for PDF invoice templates
+ * These can be customized via plugin settings
+ */
+
+:root {
+    /* PDF Color Palette */
+    --pdf-color-primary: #2c3e50;
+    --pdf-color-secondary: #34495e;
+    --pdf-color-accent: #3498db;
+    --pdf-color-success: #27ae60;
+    --pdf-color-text: #333333;
+    --pdf-color-text-light: #666666;
+    --pdf-color-text-muted: #999999;
+    
+    /* PDF Background Colors */
+    --pdf-bg-primary: #ffffff;
+    --pdf-bg-secondary: #f8f9fa;
+    --pdf-bg-tertiary: #f0f0f0;
+    
+    /* PDF Border Colors */
+    --pdf-border-color: #e0e0e0;
+    --pdf-border-color-dark: #cccccc;
+    
+    /* PDF Typography */
+    --pdf-font-family: Arial, sans-serif;
+    --pdf-font-family-heading: Arial, sans-serif;
+    --pdf-font-size-base: 12px;
+    --pdf-font-size-small: 10px;
+    --pdf-font-size-large: 14px;
+    --pdf-font-size-h1: 24px;
+    --pdf-font-size-h2: 18px;
+    --pdf-font-size-h3: 16px;
+    
+    /* PDF Spacing */
+    --pdf-spacing-xs: 4px;
+    --pdf-spacing-sm: 8px;
+    --pdf-spacing-md: 12px;
+    --pdf-spacing-lg: 16px;
+    --pdf-spacing-xl: 20px;
+    --pdf-spacing-2xl: 24px;
+    --pdf-spacing-3xl: 32px;
+    
+    /* PDF Layout */
+    --pdf-page-padding: 20px;
+    --pdf-header-height: 100px;
+    --pdf-footer-height: 50px;
+    
+    /* PDF Border Radius */
+    --pdf-radius-sm: 2px;
+    --pdf-radius-md: 4px;
+    
+    /* PDF Shadows */
+    --pdf-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --pdf-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
