@@ -2,18 +2,23 @@
 /**
  * Invoices List View
  */
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- These are local variables in a view template, not global variables
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
 $db = IG_Database::get_instance();
-$status_filter = isset($_GET['status']) ? sanitize_text_field($_GET['status']) : '';
+// phpcs:disable WordPress.Security.NonceVerification.Recommended -- GET parameter used for filtering only
+$status_filter = isset($_GET['status']) ? sanitize_text_field(wp_unslash($_GET['status'])) : '';
+// phpcs:enable WordPress.Security.NonceVerification.Recommended
 $invoices = $db->get_invoices(50, 0, $status_filter);
 ?>
 <div class="wrap">
     <div class="ig-page-header">
         <h1 class="wp-heading-inline"><?php echo esc_html__('Invoices', 'ipsit-invoice-generator'); ?></h1>
-        <a href="<?php echo admin_url('admin.php?page=ipsit-ig-invoices&action=add'); ?>" class="page-title-action ig-button-primary"><?php echo esc_html__('Add New', 'ipsit-invoice-generator'); ?></a>
+        <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-invoices&action=add')); ?>" class="page-title-action ig-button-primary"><?php echo esc_html__('Add New', 'ipsit-invoice-generator'); ?></a>
     </div>
     
     <!-- Main Content Card -->
@@ -21,16 +26,16 @@ $invoices = $db->get_invoices(50, 0, $status_filter);
         <!-- Filter Buttons -->
         <div class="ig-filter-bar">
             <div class="ig-filter-buttons">
-                <a href="<?php echo admin_url('admin.php?page=ipsit-ig-invoices'); ?>" class="ig-filter-button <?php echo empty($status_filter) ? 'ig-filter-active' : ''; ?>">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-invoices')); ?>" class="ig-filter-button <?php echo empty($status_filter) ? 'ig-filter-active' : ''; ?>">
                     <?php echo esc_html__('All', 'ipsit-invoice-generator'); ?>
                 </a>
-                <a href="<?php echo admin_url('admin.php?page=ipsit-ig-invoices&status=draft'); ?>" class="ig-filter-button <?php echo $status_filter === 'draft' ? 'ig-filter-active' : ''; ?>">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-invoices&status=draft')); ?>" class="ig-filter-button <?php echo $status_filter === 'draft' ? 'ig-filter-active' : ''; ?>">
                     <?php echo esc_html__('Draft', 'ipsit-invoice-generator'); ?>
                 </a>
-                <a href="<?php echo admin_url('admin.php?page=ipsit-ig-invoices&status=sent'); ?>" class="ig-filter-button <?php echo $status_filter === 'sent' ? 'ig-filter-active' : ''; ?>">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-invoices&status=sent')); ?>" class="ig-filter-button <?php echo $status_filter === 'sent' ? 'ig-filter-active' : ''; ?>">
                     <?php echo esc_html__('Sent', 'ipsit-invoice-generator'); ?>
                 </a>
-                <a href="<?php echo admin_url('admin.php?page=ipsit-ig-invoices&status=paid'); ?>" class="ig-filter-button <?php echo $status_filter === 'paid' ? 'ig-filter-active' : ''; ?>">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-invoices&status=paid')); ?>" class="ig-filter-button <?php echo $status_filter === 'paid' ? 'ig-filter-active' : ''; ?>">
                     <?php echo esc_html__('Paid', 'ipsit-invoice-generator'); ?>
                 </a>
             </div>
@@ -69,10 +74,10 @@ $invoices = $db->get_invoices(50, 0, $status_filter);
                         <td><span class="ig-status ig-status-<?php echo esc_attr($invoice->status); ?>"><?php echo esc_html(ucfirst($invoice->status)); ?></span></td>
                         <td>
                             <div class="ig-action-buttons">
-                                <a href="<?php echo admin_url('admin.php?page=ipsit-ig-invoices&action=edit&id=' . $invoice->id); ?>" class="ig-action-button ig-action-edit" title="<?php echo esc_attr__('Edit Invoice', 'ipsit-invoice-generator'); ?>">
+                                <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-invoices&action=edit&id=' . $invoice->id)); ?>" class="ig-action-button ig-action-edit" title="<?php echo esc_attr__('Edit Invoice', 'ipsit-invoice-generator'); ?>">
                                     <span class="dashicons dashicons-edit"></span>
                                 </a>
-                                <a href="<?php echo admin_url('admin.php?ipsit_ig_download_pdf=1&invoice_id=' . $invoice->id . '&_wpnonce=' . wp_create_nonce('ipsit_ig_download_pdf')); ?>" class="ig-action-button ig-action-pdf" title="<?php echo esc_attr__('Download PDF', 'ipsit-invoice-generator'); ?>">
+                                <a href="<?php echo esc_url(admin_url('admin.php?ipsit_ig_download_pdf=1&invoice_id=' . $invoice->id . '&_wpnonce=' . wp_create_nonce('ipsit_ig_download_pdf'))); ?>" class="ig-action-button ig-action-pdf" title="<?php echo esc_attr__('Download PDF', 'ipsit-invoice-generator'); ?>">
                                     <span class="dashicons dashicons-media-document"></span>
                                 </a>
                                 <button type="button" class="ig-action-button ig-action-delete ig-delete-invoice" data-invoice-id="<?php echo esc_attr($invoice->id); ?>" title="<?php echo esc_attr__('Delete Invoice', 'ipsit-invoice-generator'); ?>">

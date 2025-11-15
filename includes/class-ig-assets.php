@@ -116,6 +116,7 @@ class IG_Assets {
             $screen_id = $screen->id;
             
             // Template builder assets
+            // phpcs:disable WordPress.Security.NonceVerification.Recommended -- GET parameter used for navigation/routing only
             if (strpos($screen_id, 'ipsit-ig-templates') !== false && isset($_GET['action']) && $_GET['action'] === 'builder') {
                 wp_enqueue_script(
                     'ig-template-builder',
@@ -132,8 +133,10 @@ class IG_Assets {
                     IPSIT_IG_VERSION
                 );
             }
+            // phpcs:enable WordPress.Security.NonceVerification.Recommended
             
             // Invoice form assets
+            // phpcs:disable WordPress.Security.NonceVerification.Recommended -- GET parameter used for navigation/routing only
             if (strpos($screen_id, 'ipsit-ig-invoices') !== false && (isset($_GET['action']) && ($_GET['action'] === 'add' || $_GET['action'] === 'edit'))) {
                 wp_enqueue_script(
                     'ig-invoice-form',
@@ -143,8 +146,10 @@ class IG_Assets {
                     true
                 );
             }
+            // phpcs:enable WordPress.Security.NonceVerification.Recommended
             
             // Client form assets
+            // phpcs:disable WordPress.Security.NonceVerification.Recommended -- GET parameter used for navigation/routing only
             if (strpos($screen_id, 'ipsit-ig-clients') !== false && (isset($_GET['action']) && ($_GET['action'] === 'add' || $_GET['action'] === 'edit'))) {
                 wp_enqueue_script(
                     'ig-clients',
@@ -154,6 +159,7 @@ class IG_Assets {
                     true
                 );
             }
+            // phpcs:enable WordPress.Security.NonceVerification.Recommended
             
             // Settings page assets
             if (strpos($screen_id, 'ipsit-ig-settings') !== false) {

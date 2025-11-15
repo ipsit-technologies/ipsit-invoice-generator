@@ -2,6 +2,9 @@
 /**
  * Template 2 - Classic Professional
  */
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- These are local variables in a template file, not global variables
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -219,8 +222,8 @@
                     <tr>
                         <td><?php echo esc_html($item['description']); ?></td>
                         <td class="text-right"><?php echo number_format($quantity, 2); ?></td>
-                        <td class="text-right"><?php echo $currency_symbol . number_format($price, 2); ?></td>
-                        <td class="text-right"><?php echo $currency_symbol . number_format($total, 2); ?></td>
+                        <td class="text-right"><?php echo esc_html($currency_symbol) . number_format($price, 2); ?></td>
+                        <td class="text-right"><?php echo esc_html($currency_symbol) . number_format($total, 2); ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -255,17 +258,17 @@
                 <table>
                     <tr>
                         <td class="label"><?php echo esc_html__('Subtotal:', 'ipsit-invoice-generator'); ?></td>
-                        <td class="text-right"><?php echo $currency_symbol . number_format($invoice->subtotal, 2); ?></td>
+                        <td class="text-right"><?php echo esc_html($currency_symbol) . number_format($invoice->subtotal, 2); ?></td>
                     </tr>
                     <?php if ($invoice->tax > 0): ?>
                         <tr>
                             <td class="label"><?php echo esc_html__('Tax:', 'ipsit-invoice-generator'); ?></td>
-                            <td class="text-right"><?php echo $currency_symbol . number_format($invoice->tax, 2); ?></td>
+                            <td class="text-right"><?php echo esc_html($currency_symbol) . number_format($invoice->tax, 2); ?></td>
                         </tr>
                     <?php endif; ?>
                     <tr class="total-row">
                         <td class="label"><?php echo esc_html__('Total:', 'ipsit-invoice-generator'); ?></td>
-                        <td class="text-right"><?php echo $currency_symbol . number_format($invoice->total, 2); ?></td>
+                        <td class="text-right"><?php echo esc_html($currency_symbol) . number_format($invoice->total, 2); ?></td>
                     </tr>
                 </table>
             </div>

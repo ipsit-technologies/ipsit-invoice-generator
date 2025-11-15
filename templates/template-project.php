@@ -2,6 +2,9 @@
 /**
  * Project/Service Based Invoice Template
  */
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- These are local variables in a template file, not global variables
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -196,10 +199,10 @@
                 <?php if ($company->city || $company->state || $company->zip): ?>
                     <p><?php 
                         $address_parts = array();
-                        if ($company->city) $address_parts[] = esc_html($company->city);
-                        if ($company->state) $address_parts[] = esc_html($company->state);
-                        if ($company->zip) $address_parts[] = esc_html($company->zip);
-                        echo implode(', ', $address_parts);
+                        if ($company->city) $address_parts[] = $company->city;
+                        if ($company->state) $address_parts[] = $company->state;
+                        if ($company->zip) $address_parts[] = $company->zip;
+                        echo esc_html(implode(', ', $address_parts));
                     ?></p>
                 <?php endif; ?>
                 <?php if ($company->phone): ?><p><?php echo esc_html__('Tel:', 'ipsit-invoice-generator'); ?> <?php echo esc_html($company->phone); ?></p><?php endif; ?>
@@ -216,10 +219,10 @@
                 <?php if ($client->city || $client->state || $client->zip): ?>
                     <p><?php 
                         $address_parts = array();
-                        if ($client->city) $address_parts[] = esc_html($client->city);
-                        if ($client->state) $address_parts[] = esc_html($client->state);
-                        if ($client->zip) $address_parts[] = esc_html($client->zip);
-                        echo implode(', ', $address_parts);
+                        if ($client->city) $address_parts[] = $client->city;
+                        if ($client->state) $address_parts[] = $client->state;
+                        if ($client->zip) $address_parts[] = $client->zip;
+                        echo esc_html(implode(', ', $address_parts));
                     ?></p>
                 <?php endif; ?>
             <?php endif; ?>
@@ -243,8 +246,8 @@
                 ?>
                 <tr>
                     <td><?php echo esc_html($item['description']); ?></td>
-                    <td class="text-right"><?php echo $currency_symbol . number_format($price, 2); ?></td>
-                    <td class="text-right"><?php echo $currency_symbol . number_format($total, 2); ?></td>
+                    <td class="text-right"><?php echo esc_html($currency_symbol) . number_format($price, 2); ?></td>
+                    <td class="text-right"><?php echo esc_html($currency_symbol) . number_format($total, 2); ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -279,17 +282,17 @@
             <table>
                 <tr>
                     <td class="label"><?php echo esc_html__('Subtotal:', 'ipsit-invoice-generator'); ?></td>
-                    <td class="amount"><?php echo $currency_symbol . number_format($invoice->subtotal, 2); ?></td>
+                    <td class="amount"><?php echo esc_html($currency_symbol) . number_format($invoice->subtotal, 2); ?></td>
                 </tr>
                 <?php if ($invoice->tax > 0): ?>
                     <tr>
                         <td class="label"><?php echo esc_html__('Tax:', 'ipsit-invoice-generator'); ?></td>
-                        <td class="amount"><?php echo $currency_symbol . number_format($invoice->tax, 2); ?></td>
+                        <td class="amount"><?php echo esc_html($currency_symbol) . number_format($invoice->tax, 2); ?></td>
                     </tr>
                 <?php endif; ?>
                 <tr class="total-row">
                     <td class="label"><?php echo esc_html__('Total:', 'ipsit-invoice-generator'); ?></td>
-                    <td class="amount"><?php echo $currency_symbol . number_format($invoice->total, 2); ?></td>
+                    <td class="amount"><?php echo esc_html($currency_symbol) . number_format($invoice->total, 2); ?></td>
                 </tr>
             </table>
         </div>

@@ -2,6 +2,9 @@
 /**
  * Dashboard View
  */
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- These are local variables in a view template, not global variables
+
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -71,7 +74,7 @@ $currency_symbol = get_option('ipsit_ig_currency_symbol', '$');
         <div class="ig-widget">
             <div class="ig-widget-header">
                 <h2><?php echo esc_html__('Recent Invoices', 'ipsit-invoice-generator'); ?></h2>
-                <a href="<?php echo admin_url('admin.php?page=ipsit-ig-invoices'); ?>" class="button button-small"><?php echo esc_html__('View All', 'ipsit-invoice-generator'); ?></a>
+                <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-invoices')); ?>" class="button button-small"><?php echo esc_html__('View All', 'ipsit-invoice-generator'); ?></a>
             </div>
             <?php if (!empty($invoices)): ?>
                 <table class="wp-list-table widefat fixed striped ig-enhanced-table">
@@ -95,7 +98,7 @@ $currency_symbol = get_option('ipsit_ig_currency_symbol', '$');
                                 <td><?php echo esc_html(get_option('ipsit_ig_currency_symbol', '$') . number_format($invoice->total, 2)); ?></td>
                                 <td><span class="ig-status ig-status-<?php echo esc_attr($invoice->status); ?>"><?php echo esc_html(ucfirst($invoice->status)); ?></span></td>
                                 <td>
-                                    <a href="<?php echo admin_url('admin.php?page=ipsit-ig-invoices&action=edit&id=' . $invoice->id); ?>" class="ig-action-button ig-action-edit" title="<?php echo esc_attr__('Edit Invoice', 'ipsit-invoice-generator'); ?>">
+                                    <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-invoices&action=edit&id=' . $invoice->id)); ?>" class="ig-action-button ig-action-edit" title="<?php echo esc_attr__('Edit Invoice', 'ipsit-invoice-generator'); ?>">
                                         <span class="dashicons dashicons-edit"></span>
                                     </a>
                                 </td>
@@ -107,14 +110,14 @@ $currency_symbol = get_option('ipsit_ig_currency_symbol', '$');
                 <p><?php echo esc_html__('No invoices found.', 'ipsit-invoice-generator'); ?></p>
             <?php endif; ?>
             <div class="ig-widget-footer">
-                <a href="<?php echo admin_url('admin.php?page=ipsit-ig-invoices&action=add'); ?>" class="button button-primary"><?php echo esc_html__('Create New Invoice', 'ipsit-invoice-generator'); ?></a>
+                <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-invoices&action=add')); ?>" class="button button-primary"><?php echo esc_html__('Create New Invoice', 'ipsit-invoice-generator'); ?></a>
             </div>
         </div>
         
         <div class="ig-widget">
             <div class="ig-widget-header">
                 <h2><?php echo esc_html__('Recent Clients', 'ipsit-invoice-generator'); ?></h2>
-                <a href="<?php echo admin_url('admin.php?page=ipsit-ig-clients'); ?>" class="button button-small"><?php echo esc_html__('View All', 'ipsit-invoice-generator'); ?></a>
+                <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-clients')); ?>" class="button button-small"><?php echo esc_html__('View All', 'ipsit-invoice-generator'); ?></a>
             </div>
             <?php if (!empty($clients)): ?>
                 <table class="wp-list-table widefat fixed striped ig-enhanced-table">
@@ -133,7 +136,7 @@ $currency_symbol = get_option('ipsit_ig_currency_symbol', '$');
                                 <td><?php echo esc_html($client->email); ?></td>
                                 <td><?php echo esc_html($client->phone); ?></td>
                                 <td>
-                                    <a href="<?php echo admin_url('admin.php?page=ipsit-ig-clients&action=edit&id=' . $client->id); ?>" class="ig-action-button ig-action-edit" title="<?php echo esc_attr__('Edit Client', 'ipsit-invoice-generator'); ?>">
+                                    <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-clients&action=edit&id=' . $client->id)); ?>" class="ig-action-button ig-action-edit" title="<?php echo esc_attr__('Edit Client', 'ipsit-invoice-generator'); ?>">
                                         <span class="dashicons dashicons-edit"></span>
                                     </a>
                                 </td>
@@ -145,7 +148,7 @@ $currency_symbol = get_option('ipsit_ig_currency_symbol', '$');
                 <p><?php echo esc_html__('No clients found.', 'ipsit-invoice-generator'); ?></p>
             <?php endif; ?>
             <div class="ig-widget-footer">
-                <a href="<?php echo admin_url('admin.php?page=ipsit-ig-clients&action=add'); ?>" class="button button-primary"><?php echo esc_html__('Add New Client', 'ipsit-invoice-generator'); ?></a>
+                <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-clients&action=add')); ?>" class="button button-primary"><?php echo esc_html__('Add New Client', 'ipsit-invoice-generator'); ?></a>
             </div>
         </div>
     </div>

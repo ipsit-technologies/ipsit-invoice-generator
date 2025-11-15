@@ -2,12 +2,17 @@
 /**
  * Template Builder View - Visual Field Manager
  */
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- These are local variables in a view template, not global variables
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
 $db = IG_Database::get_instance();
-$template_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+// phpcs:disable WordPress.Security.NonceVerification.Recommended -- GET parameter used for navigation/routing only
+$template_id = isset($_GET['id']) ? intval(wp_unslash($_GET['id'])) : 0;
+// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 // Ensure settings column exists
 $db->ensure_template_settings_column();
@@ -252,7 +257,7 @@ $available_client_fields = array(
             <?php if ($preview_invoice_id > 0): ?>
                 <button type="button" id="ig-preview-template" class="button" data-invoice-id="<?php echo esc_attr($preview_invoice_id); ?>"><?php echo esc_html__('Preview', 'ipsit-invoice-generator'); ?></button>
             <?php endif; ?>
-            <a href="<?php echo admin_url('admin.php?page=ipsit-ig-templates'); ?>" class="button"><?php echo esc_html__('Cancel', 'ipsit-invoice-generator'); ?></a>
+            <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-templates')); ?>" class="button"><?php echo esc_html__('Cancel', 'ipsit-invoice-generator'); ?></a>
         </p>
     </form>
 </div>

@@ -2,6 +2,9 @@
 /**
  * Settings View
  */
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- These are local variables in a view template, not global variables
+
 if (!defined('ABSPATH')) {
     exit;
 }

@@ -201,6 +201,7 @@ class IG_Helper {
         
         if ($file['size'] > IG_Config::MAX_LOGO_SIZE) {
             $errors[] = sprintf(
+                /* translators: %s: Maximum file size */
                 __('File size exceeds maximum allowed size of %s.', 'ipsit-invoice-generator'),
                 size_format(IG_Config::MAX_LOGO_SIZE)
             );

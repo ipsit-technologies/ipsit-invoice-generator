@@ -2,6 +2,9 @@
 /**
  * Templates List View
  */
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- These are local variables in a view template, not global variables
+
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -13,12 +16,16 @@ $templates = $db->get_templates();
     <div class="ig-page-header">
         <h1 class="wp-heading-inline"><?php echo esc_html__('Templates', 'ipsit-invoice-generator'); ?></h1>
         <div class="ig-page-actions">
-            <a href="<?php echo admin_url('admin.php?page=ipsit-ig-templates&action=builder'); ?>" class="page-title-action ig-button-primary"><?php echo esc_html__('Create Template', 'ipsit-invoice-generator'); ?></a>
-            <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=ipsit-ig-templates&ipsit_ig_reload_templates=1'), 'ipsit_ig_reload_templates'); ?>" class="page-title-action"><?php echo esc_html__('Reload Pre-built Templates', 'ipsit-invoice-generator'); ?></a>
+            <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-templates&action=builder')); ?>" class="page-title-action ig-button-primary"><?php echo esc_html__('Create Template', 'ipsit-invoice-generator'); ?></a>
+            <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=ipsit-ig-templates&ipsit_ig_reload_templates=1'), 'ipsit_ig_reload_templates')); ?>" class="page-title-action"><?php echo esc_html__('Reload Pre-built Templates', 'ipsit-invoice-generator'); ?></a>
         </div>
     </div>
     
-    <?php if (isset($_GET['templates_reloaded'])): ?>
+    <?php
+    // phpcs:disable WordPress.Security.NonceVerification.Recommended -- GET parameter used for display only
+    if (isset($_GET['templates_reloaded'])):
+    // phpcs:enable WordPress.Security.NonceVerification.Recommended
+    ?>
         <div class="notice notice-success is-dismissible">
             <p><?php echo esc_html__('Pre-built templates have been reloaded successfully.', 'ipsit-invoice-generator'); ?></p>
         </div>
@@ -48,7 +55,7 @@ $templates = $db->get_templates();
                         <td><?php echo esc_html(date_i18n(get_option('date_format'), strtotime($template->created_at))); ?></td>
                         <td>
                             <div class="ig-action-buttons">
-                                <a href="<?php echo admin_url('admin.php?page=ipsit-ig-templates&action=builder&id=' . $template->id); ?>" class="ig-action-button ig-action-edit" title="<?php echo esc_attr__('Edit Template', 'ipsit-invoice-generator'); ?>">
+                                <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-templates&action=builder&id=' . $template->id)); ?>" class="ig-action-button ig-action-edit" title="<?php echo esc_attr__('Edit Template', 'ipsit-invoice-generator'); ?>">
                                     <span class="dashicons dashicons-edit"></span>
                                 </a>
                                 <button type="button" class="ig-action-button ig-action-delete ig-delete-template" data-template-id="<?php echo esc_attr($template->id); ?>" title="<?php echo esc_attr__('Delete Template', 'ipsit-invoice-generator'); ?>">

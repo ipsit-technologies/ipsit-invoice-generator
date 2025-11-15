@@ -31,29 +31,29 @@
          * Generic delete handler
          */
         deleteHandler: function(type, e) {
-            e.preventDefault();
+        e.preventDefault();
             
-            if (!confirm(igAdmin.strings.confirmDelete)) {
-                return;
-            }
-            
+        if (!confirm(igAdmin.strings.confirmDelete)) {
+            return;
+        }
+        
             var $btn = $(e.currentTarget);
             var id = $btn.data(type + '-id');
             var $row = $btn.closest('tr');
             
             // Disable button during request
             $btn.prop('disabled', true).addClass('disabled');
-            
-            $.ajax({
-                url: igAdmin.ajaxUrl,
-                type: 'POST',
-                data: {
+        
+        $.ajax({
+            url: igAdmin.ajaxUrl,
+            type: 'POST',
+            data: {
                     action: 'ig_delete_' + type,
                     [type + '_id']: id,
-                    nonce: igAdmin.nonce
-                },
-                success: function(response) {
-                    if (response.success) {
+                nonce: igAdmin.nonce
+            },
+            success: function(response) {
+                if (response.success) {
                         $row.fadeOut(400, function() {
                             $row.remove();
                             // Check if table is empty
@@ -63,12 +63,12 @@
                                     '<p>No ' + type + 's found.</p>'
                                 );
                             }
-                        });
+                    });
                         IGAdmin.showNotice(response.data.message, 'success');
-                    } else {
+                } else {
                         $btn.prop('disabled', false).removeClass('disabled');
                         IGAdmin.showNotice(response.data.message, 'error');
-                    }
+                }
                 },
                 error: function() {
                     $btn.prop('disabled', false).removeClass('disabled');
@@ -88,7 +88,7 @@
             setTimeout(function() {
                 $notice.fadeOut(400, function() {
                     $notice.remove();
-                });
+                    });
             }, 5000);
         },
         
@@ -127,7 +127,7 @@
             if (originalText) {
                 $element.is('input') ? $element.val(originalText) : $element.text(originalText);
                 $element.removeData('original-text');
-            }
+        }
         },
         
         /**
@@ -138,18 +138,18 @@
                 action: action,
                 nonce: igAdmin.nonce
             });
-            
-            $.ajax({
-                url: igAdmin.ajaxUrl,
-                type: 'POST',
+        
+        $.ajax({
+            url: igAdmin.ajaxUrl,
+            type: 'POST',
                 data: requestData,
-                success: function(response) {
+            success: function(response) {
                     callback(response.success, response.data || {});
                 },
                 error: function() {
                     callback(false, { message: 'An error occurred. Please try again.' });
-                }
-            });
+            }
+        });
         }
     };
     

@@ -3,13 +3,18 @@
 /**
  * Invoice Form View
  */
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- These are local variables in a view template, not global variables
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
 $db = IG_Database::get_instance();
 $template_engine = IG_Template_Engine::get_instance();
-$invoice_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+// phpcs:disable WordPress.Security.NonceVerification.Recommended -- GET parameter used for navigation/routing only
+$invoice_id = isset($_GET['id']) ? intval(wp_unslash($_GET['id'])) : 0;
+// phpcs:enable WordPress.Security.NonceVerification.Recommended
 $invoice = $invoice_id > 0 ? $db->get_invoice($invoice_id) : null;
 $company = $db->get_company(); // Get company for default payment details
 $clients = $db->get_clients(100);
@@ -69,7 +74,7 @@ $currency_symbol = get_option('ipsit_ig_currency_symbol', '$');
             </div>
             <div class="ig-form-col">
                 <label for="invoice_date"><?php echo esc_html__('Invoice Date', 'ipsit-invoice-generator'); ?></label>
-                <input type="date" name="invoice_date" id="invoice_date" value="<?php echo $invoice ? esc_attr($invoice->invoice_date) : esc_attr(date('Y-m-d')); ?>" required>
+                <input type="date" name="invoice_date" id="invoice_date" value="<?php echo $invoice ? esc_attr($invoice->invoice_date) : esc_attr(wp_date('Y-m-d')); ?>" required>
             </div>
             <div class="ig-form-col">
                 <label for="due_date"><?php echo esc_html__('Due Date', 'ipsit-invoice-generator'); ?></label>
@@ -105,8 +110,8 @@ $currency_symbol = get_option('ipsit_ig_currency_symbol', '$');
                         $template_value = esc_attr($template->id);
                     }
                     ?>
-                    <option value="<?php echo $template_value; ?>" <?php selected($invoice && $invoice->template_id == $template->id); ?>>
-                        <?php echo $display_name; ?>
+                    <option value="<?php echo esc_attr($template_value); ?>" <?php selected($invoice && $invoice->template_id == $template->id); ?>>
+                        <?php echo esc_html($display_name); ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -234,11 +239,11 @@ $currency_symbol = get_option('ipsit_ig_currency_symbol', '$');
         <p class="submit">
             <button type="submit" class="button button-primary"><?php echo esc_html__('Save Invoice', 'ipsit-invoice-generator'); ?></button>
             <?php if ($invoice_id > 0): ?>
-                <a href="<?php echo admin_url('admin.php?ipsit_ig_download_pdf=1&invoice_id=' . $invoice_id . '&_wpnonce=' . wp_create_nonce('ipsit_ig_download_pdf')); ?>" class="ig-action-button ig-action-pdf" title="<?php echo esc_attr__('Download PDF', 'ipsit-invoice-generator'); ?>">
+                <a href="<?php echo esc_url(admin_url('admin.php?ipsit_ig_download_pdf=1&invoice_id=' . $invoice_id . '&_wpnonce=' . wp_create_nonce('ipsit_ig_download_pdf'))); ?>" class="ig-action-button ig-action-pdf" title="<?php echo esc_attr__('Download PDF', 'ipsit-invoice-generator'); ?>">
                     <span class="dashicons dashicons-media-document"></span>
                 </a>
             <?php endif; ?>
-            <a href="<?php echo admin_url('admin.php?page=ipsit-ig-invoices'); ?>" class="button"><?php echo esc_html__('Cancel', 'ipsit-invoice-generator'); ?></a>
+            <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-invoices')); ?>" class="button"><?php echo esc_html__('Cancel', 'ipsit-invoice-generator'); ?></a>
         </p>
     </form>
 
@@ -251,32 +256,32 @@ $currency_symbol = get_option('ipsit_ig_currency_symbol', '$');
                 <?php echo esc_html__('Send Invoice via Email', 'ipsit-invoice-generator'); ?>
             </h2>
             <span class="ig-accordion-toggle dashicons dashicons-arrow-down-alt2"></span>
-        </div>
+</div>
         <div class="ig-accordion-content" id="ig-email-accordion-content">
-            <form id="ig-email-form">
-                <?php wp_nonce_field('ig_admin_nonce', 'email_nonce'); ?>
+        <form id="ig-email-form">
+            <?php wp_nonce_field('ig_admin_nonce', 'email_nonce'); ?>
                 <input type="hidden" name="invoice_id" id="email_invoice_id" value="<?php echo esc_attr($invoice_id); ?>">
                 
                 <div class="ig-form-field">
                     <label for="to_email"><?php echo esc_html__('To Email', 'ipsit-invoice-generator'); ?> <span class="required">*</span></label>
-                    <input type="email" name="to_email" id="to_email" class="regular-text" required>
+                <input type="email" name="to_email" id="to_email" class="regular-text" required>
                 </div>
 
                 <div class="ig-form-field">
                     <label for="email_subject"><?php echo esc_html__('Subject', 'ipsit-invoice-generator'); ?> <span class="required">*</span></label>
-                    <input type="text" name="subject" id="email_subject" class="large-text" required>
+                <input type="text" name="subject" id="email_subject" class="large-text" required>
                 </div>
 
                 <div class="ig-form-field">
-                    <label for="email_message"><?php echo esc_html__('Message', 'ipsit-invoice-generator'); ?></label>
-                    <textarea name="message" id="email_message" rows="5" class="large-text"></textarea>
+                <label for="email_message"><?php echo esc_html__('Message', 'ipsit-invoice-generator'); ?></label>
+                <textarea name="message" id="email_message" rows="5" class="large-text"></textarea>
                 </div>
 
                 <p class="submit">
                     <button type="submit" class="button button-primary"><?php echo esc_html__('Send Email', 'ipsit-invoice-generator'); ?></button>
-                </p>
-            </form>
-        </div>
+            </p>
+        </form>
+    </div>
     </div>
     <?php endif; ?>
 </div>

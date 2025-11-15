@@ -117,7 +117,7 @@ class IPSIT_Invoice_Generator {
         if (isset($_GET['ipsit_ig_reload_templates']) && current_user_can('manage_options')) {
             check_admin_referer('ipsit_ig_reload_templates');
             $this->load_prebuilt_templates(true);
-            wp_redirect(admin_url('admin.php?page=ipsit-ig-templates&templates_reloaded=1'));
+            wp_safe_redirect(admin_url('admin.php?page=ipsit-ig-templates&templates_reloaded=1'));
             exit;
         }
     }
@@ -128,12 +128,12 @@ class IPSIT_Invoice_Generator {
     public function handle_pdf_download() {
         if (isset($_GET['ipsit_ig_download_pdf']) && isset($_GET['invoice_id']) && current_user_can('manage_options')) {
             check_admin_referer('ipsit_ig_download_pdf', '_wpnonce');
-            $invoice_id = intval($_GET['invoice_id']);
+            $invoice_id = intval(wp_unslash($_GET['invoice_id']));
             
             // Get template_id from URL or use invoice's saved template_id
             $template_id = null;
             if (isset($_GET['template_id']) && !empty($_GET['template_id'])) {
-                $template_id = sanitize_text_field($_GET['template_id']);
+                $template_id = sanitize_text_field(wp_unslash($_GET['template_id']));
                 // Convert numeric strings to int for database templates
                 if (is_numeric($template_id)) {
                     $template_id = intval($template_id);
@@ -160,9 +160,12 @@ class IPSIT_Invoice_Generator {
     
     /**
      * Load plugin textdomain
+     * Note: When hosted on WordPress.org, translations are automatically loaded.
+     * This is kept for local development only.
      */
     public function load_textdomain() {
-        load_plugin_textdomain('ipsit-invoice-generator', false, dirname(IPSIT_IG_PLUGIN_BASENAME) . '/languages');
+        // Not needed for WordPress.org - WordPress automatically loads translations
+        // load_plugin_textdomain('ipsit-invoice-generator', false, dirname(IPSIT_IG_PLUGIN_BASENAME) . '/languages');
     }
     
     /**

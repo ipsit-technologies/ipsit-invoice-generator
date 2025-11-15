@@ -2,6 +2,9 @@
 /**
  * Clients List View
  */
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- These are local variables in a view template, not global variables
+
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -12,7 +15,7 @@ $clients = $db->get_clients(100);
 <div class="wrap">
     <div class="ig-page-header">
         <h1 class="wp-heading-inline"><?php echo esc_html__('Clients', 'ipsit-invoice-generator'); ?></h1>
-        <a href="<?php echo admin_url('admin.php?page=ipsit-ig-clients&action=add'); ?>" class="page-title-action ig-button-primary"><?php echo esc_html__('Add New', 'ipsit-invoice-generator'); ?></a>
+        <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-clients&action=add')); ?>" class="page-title-action ig-button-primary"><?php echo esc_html__('Add New', 'ipsit-invoice-generator'); ?></a>
     </div>
     
     <!-- Main Content Card -->
@@ -48,7 +51,7 @@ $clients = $db->get_clients(100);
                         </td>
                         <td>
                             <div class="ig-action-buttons">
-                                <a href="<?php echo admin_url('admin.php?page=ipsit-ig-clients&action=edit&id=' . $client->id); ?>" class="ig-action-button ig-action-edit" title="<?php echo esc_attr__('Edit Client', 'ipsit-invoice-generator'); ?>">
+                                <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-clients&action=edit&id=' . $client->id)); ?>" class="ig-action-button ig-action-edit" title="<?php echo esc_attr__('Edit Client', 'ipsit-invoice-generator'); ?>">
                                     <span class="dashicons dashicons-edit"></span>
                                 </a>
                                 <button type="button" class="ig-action-button ig-action-delete ig-delete-client" data-client-id="<?php echo esc_attr($client->id); ?>" title="<?php echo esc_attr__('Delete Client', 'ipsit-invoice-generator'); ?>">

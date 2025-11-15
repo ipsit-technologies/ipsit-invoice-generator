@@ -44,7 +44,7 @@ class IG_PDF {
         $html = $template_engine->render_invoice($invoice_id, $template_id);
         
         if (empty($html)) {
-            wp_die(__('Unable to generate PDF. Invoice not found.', 'ipsit-invoice-generator'));
+            wp_die(esc_html__('Unable to generate PDF. Invoice not found.', 'ipsit-invoice-generator'));
         }
         
         // Configure dompdf options

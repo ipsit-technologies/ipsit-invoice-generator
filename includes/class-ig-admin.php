@@ -136,8 +136,10 @@ class IG_Admin {
      * Render invoices page
      */
     public function render_invoices_page() {
-        $action = isset($_GET['action']) ? sanitize_text_field($_GET['action']) : 'list';
-        $invoice_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- GET parameters used for navigation/routing only
+        $action = isset($_GET['action']) ? sanitize_text_field(wp_unslash($_GET['action'])) : 'list';
+        $invoice_id = isset($_GET['id']) ? intval(wp_unslash($_GET['id'])) : 0;
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
         
         if ($action === 'edit' || $action === 'add') {
             if (!file_exists(IPSIT_IG_PLUGIN_DIR . 'admin/views/invoice-form.php')) {
@@ -158,8 +160,10 @@ class IG_Admin {
      * Render clients page
      */
     public function render_clients_page() {
-        $action = isset($_GET['action']) ? sanitize_text_field($_GET['action']) : 'list';
-        $client_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- GET parameters used for navigation/routing only
+        $action = isset($_GET['action']) ? sanitize_text_field(wp_unslash($_GET['action'])) : 'list';
+        $client_id = isset($_GET['id']) ? intval(wp_unslash($_GET['id'])) : 0;
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
         
         if ($action === 'edit' || $action === 'add') {
             if (!file_exists(IPSIT_IG_PLUGIN_DIR . 'admin/views/client-form.php')) {
@@ -191,7 +195,9 @@ class IG_Admin {
      * Render templates page
      */
     public function render_templates_page() {
-        $action = isset($_GET['action']) ? sanitize_text_field($_GET['action']) : 'list';
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- GET parameters used for navigation/routing only
+        $action = isset($_GET['action']) ? sanitize_text_field(wp_unslash($_GET['action'])) : 'list';
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
         
         if ($action === 'builder') {
             if (!file_exists(IPSIT_IG_PLUGIN_DIR . 'admin/views/template-builder.php')) {

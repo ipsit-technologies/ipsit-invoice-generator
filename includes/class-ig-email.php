@@ -107,7 +107,7 @@ class IG_Email {
         
         // Clean up temp file
         if (file_exists($filepath)) {
-            @unlink($filepath);
+            wp_delete_file($filepath);
         }
         
         if ($result) {
@@ -124,11 +124,13 @@ class IG_Email {
      */
     private function get_default_email_message($invoice, $client) {
         $message = '<html><body>';
+        /* translators: %s: Client name */
         $message .= '<p>' . sprintf(__('Dear %s,', 'ipsit-invoice-generator'), esc_html($client->name)) . '</p>';
         $message .= '<p>' . __('Please find attached invoice #', 'ipsit-invoice-generator') . esc_html($invoice->invoice_number) . '.</p>';
         
         if ($invoice->due_date) {
             $due_date = date_i18n(get_option('date_format'), strtotime($invoice->due_date));
+            /* translators: %s: Due date */
             $message .= '<p>' . sprintf(__('Payment is due by %s.', 'ipsit-invoice-generator'), esc_html($due_date)) . '</p>';
         }
         

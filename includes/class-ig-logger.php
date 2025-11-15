@@ -71,6 +71,7 @@ class IG_Logger {
             $formatted_message .= ' | Context: ' . wp_json_encode($context);
         }
         
+        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- This is intentional logging functionality, not debug code
         error_log($formatted_message);
         
         // Also log to WordPress debug log if enabled

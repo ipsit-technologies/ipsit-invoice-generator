@@ -1,0 +1,1338 @@
+# Copyright (C) 2025 Ipsit Technologies
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: IPSIT Invoice Generator 1.0.0\n"
+"Report-Msgid-Bugs-To: https://ipsittechnologies.com/\n"
+"Last-Translator: Ipsit Technologies <support@ipsittechnologies.com>\n"
+"Language-Team: Ipsit Technologies <support@ipsittechnologies.com>\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-11-15T13:49:30+00:00\n"
+"PO-Revision-Date: 2025-11-15 19:30+0000\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: ipsit-invoice-generator\n"
+
+#. Plugin Name of the plugin
+#: ipsit-invoice-generator.php
+#: includes/class-ig-admin.php:53
+#: includes/class-ig-admin.php:54
+msgid "IPSIT Invoice Generator"
+msgstr "IPSIT Rechnungsgenerator"
+
+#. Plugin URI of the plugin
+#: ipsit-invoice-generator.php
+msgid "https://ipsittechnologies.com/"
+msgstr ""
+
+#. Description of the plugin
+#: ipsit-invoice-generator.php
+msgid "A professional WordPress plugin for creating, managing, and sending invoices with PDF generation."
+msgstr "Ein professionelles WordPress-Plugin zum Erstellen, Verwalten und Versenden von Rechnungen mit PDF-Generierung."
+
+#. Author of the plugin
+#: ipsit-invoice-generator.php
+msgid "Ipsit Technologies"
+msgstr ""
+
+#. Author URI of the plugin
+#: ipsit-invoice-generator.php
+msgid "https://ipsittechnologies.com"
+msgstr ""
+
+#: admin/views/client-form.php:15
+#: admin/views/clients-list.php:51
+#: admin/views/dashboard.php:136
+msgid "Edit Client"
+msgstr "Kunde bearbeiten"
+
+#: admin/views/client-form.php:15
+#: admin/views/dashboard.php:148
+msgid "Add New Client"
+msgstr "Neuen Kunden hinzufügen"
+
+#: admin/views/client-form.php:21
+msgid "Basic Information"
+msgstr "Grundlegende Informationen"
+
+#: admin/views/client-form.php:25
+#: admin/views/clients-list.php:25
+#: admin/views/dashboard.php:123
+#: admin/views/templates-list.php:34
+msgid "Name"
+msgstr "Name"
+
+#: admin/views/client-form.php:29
+#: admin/views/client-form.php:67
+#: admin/views/client-form.php:96
+#: admin/views/clients-list.php:26
+#: admin/views/company-settings.php:26
+#: admin/views/dashboard.php:124
+msgid "Email"
+msgstr "E-Mail"
+
+#: admin/views/client-form.php:33
+#: admin/views/clients-list.php:27
+#: admin/views/company-settings.php:30
+#: admin/views/dashboard.php:125
+msgid "Phone"
+msgstr "Telefon"
+
+#: admin/views/client-form.php:37
+#: admin/views/clients-list.php:28
+#: admin/views/company-settings.php:34
+msgid "Address"
+msgstr "Adresse"
+
+#: admin/views/client-form.php:41
+#: admin/views/company-settings.php:38
+msgid "City"
+msgstr "Stadt"
+
+#: admin/views/client-form.php:45
+#: admin/views/company-settings.php:42
+msgid "State/Province"
+msgstr "Bundesland/Provinz"
+
+#: admin/views/client-form.php:49
+#: admin/views/company-settings.php:46
+msgid "ZIP/Postal Code"
+msgstr "PLZ"
+
+#: admin/views/client-form.php:53
+#: admin/views/company-settings.php:50
+msgid "Country"
+msgstr "Land"
+
+#: admin/views/client-form.php:58
+#: admin/views/template-builder.php:204
+msgid "Custom Fields"
+msgstr "Benutzerdefinierte Felder"
+
+#: admin/views/client-form.php:65
+#: admin/views/client-form.php:94
+msgid "Text"
+msgstr "Text"
+
+#: admin/views/client-form.php:66
+#: admin/views/client-form.php:95
+msgid "Number"
+msgstr "Nummer"
+
+#: admin/views/client-form.php:68
+#: admin/views/client-form.php:97
+#: admin/views/dashboard.php:82
+#: admin/views/invoices-list.php:46
+msgid "Date"
+msgstr "Datum"
+
+#: admin/views/client-form.php:69
+#: admin/views/client-form.php:98
+msgid "Textarea"
+msgstr "Textfeld"
+
+#: admin/views/client-form.php:70
+#: admin/views/client-form.php:99
+msgid "Dropdown"
+msgstr "Dropdown"
+
+#: admin/views/client-form.php:71
+#: admin/views/client-form.php:100
+msgid "Checkbox"
+msgstr "Kontrollkästchen"
+
+#: admin/views/client-form.php:73
+#: admin/views/client-form.php:102
+msgid "Field Name"
+msgstr "Feldname"
+
+#: admin/views/client-form.php:74
+#: admin/views/client-form.php:103
+msgid "Field Value"
+msgstr "Feldwert"
+
+#: admin/views/client-form.php:75
+#: admin/views/client-form.php:104
+#: admin/views/invoice-form.php:133
+#: admin/views/template-builder.php:169
+#: admin/views/template-builder.php:242
+msgid "Remove"
+msgstr "Entfernen"
+
+#: admin/views/client-form.php:81
+msgid "Add Custom Field"
+msgstr "Benutzerdefiniertes Feld hinzufügen"
+
+#: admin/views/client-form.php:85
+msgid "Save Client"
+msgstr "Kunde speichern"
+
+#: admin/views/client-form.php:86
+#: admin/views/invoice-form.php:241
+#: admin/views/template-builder.php:255
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: admin/views/clients-list.php:14
+#: includes/class-ig-admin.php:82
+#: includes/class-ig-admin.php:83
+#: includes/class-ig-admin.php:172
+msgid "Clients"
+msgstr "Kunden"
+
+#: admin/views/clients-list.php:15
+#: admin/views/invoices-list.php:16
+msgid "Add New"
+msgstr "Neu hinzufügen"
+
+#: admin/views/clients-list.php:29
+#: admin/views/dashboard.php:85
+#: admin/views/dashboard.php:126
+#: admin/views/invoices-list.php:50
+#: admin/views/templates-list.php:38
+msgid "Actions"
+msgstr "Aktionen"
+
+#: admin/views/clients-list.php:54
+msgid "Delete Client"
+msgstr "Kunde löschen"
+
+#: admin/views/clients-list.php:63
+#: admin/views/dashboard.php:145
+msgid "No clients found."
+msgstr "Keine Kunden gefunden."
+
+#: admin/views/company-settings.php:13
+#: includes/class-ig-admin.php:91
+#: includes/class-ig-admin.php:92
+#: includes/class-ig-admin.php:184
+msgid "Company Settings"
+msgstr "Unternehmenseinstellungen"
+
+#: admin/views/company-settings.php:18
+msgid "Company Information"
+msgstr "Unternehmensinformationen"
+
+#: admin/views/company-settings.php:22
+msgid "Company Name"
+msgstr "Firmenname"
+
+#: admin/views/company-settings.php:54
+msgid "Tax ID"
+msgstr "Steuernummer"
+
+#: admin/views/company-settings.php:58
+msgid "Website"
+msgstr "Webseite"
+
+#: admin/views/company-settings.php:62
+msgid "Logo"
+msgstr "Logo"
+
+#: admin/views/company-settings.php:68
+msgid "Upload your company logo. Recommended size: 200x100px"
+msgstr "Laden Sie Ihr Firmenlogo hoch. Empfohlene Größe: 200x100px"
+
+#: admin/views/company-settings.php:73
+msgid "Default Payment Method"
+msgstr "Standard-Zahlungsmethode"
+
+#: admin/views/company-settings.php:74
+msgid "Set default bank transfer details. These will be pre-filled when creating invoices, but can be changed per invoice."
+msgstr "Legen Sie Standard-Bankverbindungsdaten fest. Diese werden beim Erstellen von Rechnungen vorausgefüllt, können aber pro Rechnung geändert werden."
+
+#: admin/views/company-settings.php:78
+msgid "Enable Bank Transfer"
+msgstr "Banküberweisung aktivieren"
+
+#: admin/views/company-settings.php:82
+msgid "Use Bank Transfer as default payment method"
+msgstr "Banküberweisung als Standard-Zahlungsmethode verwenden"
+
+#: admin/views/company-settings.php:91
+#: admin/views/invoice-form.php:195
+msgid "Bank Name"
+msgstr "Bankname"
+
+#: admin/views/company-settings.php:95
+#: admin/views/invoice-form.php:201
+msgid "Account Number"
+msgstr "Kontonummer"
+
+#: admin/views/company-settings.php:99
+#: admin/views/invoice-form.php:207
+msgid "Account Title"
+msgstr "Kontoinhaber"
+
+#: admin/views/company-settings.php:103
+#: admin/views/invoice-form.php:213
+msgid "Account Branch"
+msgstr "Bankfiliale"
+
+#: admin/views/company-settings.php:107
+#: admin/views/invoice-form.php:219
+msgid "IBAN"
+msgstr "IBAN"
+
+#: admin/views/company-settings.php:111
+#: admin/views/invoice-form.php:225
+msgid "IFSC Code"
+msgstr "IFSC-Code"
+
+#: admin/views/company-settings.php:118
+#: admin/views/settings.php:211
+msgid "Save Settings"
+msgstr "Einstellungen speichern"
+
+#: admin/views/dashboard.php:25
+msgid "Invoice Generator Dashboard"
+msgstr "Rechnungsgenerator-Dashboard"
+
+#: admin/views/dashboard.php:35
+msgid "Total Invoices"
+msgstr "Gesamte Rechnungen"
+
+#: admin/views/dashboard.php:45
+msgid "Revenue This Month"
+msgstr "Umsatz diesen Monat"
+
+#: admin/views/dashboard.php:55
+msgid "Total Clients"
+msgstr "Gesamte Kunden"
+
+#: admin/views/dashboard.php:65
+msgid "Pending Invoices"
+msgstr "Ausstehende Rechnungen"
+
+#: admin/views/dashboard.php:73
+msgid "Recent Invoices"
+msgstr "Letzte Rechnungen"
+
+#: admin/views/dashboard.php:74
+#: admin/views/dashboard.php:117
+msgid "View All"
+msgstr "Alle anzeigen"
+
+#: admin/views/dashboard.php:80
+#: admin/views/invoices-list.php:44
+msgid "Invoice #"
+msgstr "Rechnung Nr."
+
+#: admin/views/dashboard.php:81
+#: admin/views/invoice-form.php:60
+#: admin/views/invoices-list.php:45
+msgid "Client"
+msgstr "Kunde"
+
+#: admin/views/dashboard.php:83
+#: admin/views/invoice-form.php:122
+#: admin/views/invoices-list.php:48
+#: includes/class-ig-template-engine.php:379
+#: templates/template-1.php:190
+#: templates/template-1.php:248
+#: templates/template-default.php:235
+msgid "Total"
+msgstr "Gesamt"
+
+#: admin/views/dashboard.php:84
+#: admin/views/invoice-form.php:79
+#: admin/views/invoices-list.php:49
+msgid "Status"
+msgstr "Status"
+
+#: admin/views/dashboard.php:98
+#: admin/views/invoice-form.php:52
+#: admin/views/invoices-list.php:72
+msgid "Edit Invoice"
+msgstr "Rechnung bearbeiten"
+
+#: admin/views/dashboard.php:107
+#: admin/views/invoices-list.php:87
+msgid "No invoices found."
+msgstr "Keine Rechnungen gefunden."
+
+#: admin/views/dashboard.php:110
+msgid "Create New Invoice"
+msgstr "Neue Rechnung erstellen"
+
+#: admin/views/dashboard.php:116
+msgid "Recent Clients"
+msgstr "Letzte Kunden"
+
+#: admin/views/invoice-form.php:52
+msgid "Create Invoice"
+msgstr "Rechnung erstellen"
+
+#: admin/views/invoice-form.php:62
+msgid "Select Client"
+msgstr "Kunde auswählen"
+
+#: admin/views/invoice-form.php:71
+msgid "Invoice Date"
+msgstr "Rechnungsdatum"
+
+#: admin/views/invoice-form.php:75
+#: admin/views/invoices-list.php:47
+msgid "Due Date"
+msgstr "Fälligkeitsdatum"
+
+#: admin/views/invoice-form.php:81
+#: admin/views/invoices-list.php:28
+#: includes/class-ig-config.php:94
+msgid "Draft"
+msgstr "Entwurf"
+
+#: admin/views/invoice-form.php:82
+#: admin/views/invoices-list.php:31
+#: includes/class-ig-config.php:95
+msgid "Sent"
+msgstr "Gesendet"
+
+#: admin/views/invoice-form.php:83
+#: admin/views/invoices-list.php:34
+#: includes/class-ig-config.php:96
+msgid "Paid"
+msgstr "Bezahlt"
+
+#: admin/views/invoice-form.php:84
+#: includes/class-ig-config.php:97
+msgid "Overdue"
+msgstr "Überfällig"
+
+#: admin/views/invoice-form.php:90
+msgid "Template"
+msgstr "Vorlage"
+
+#: admin/views/invoice-form.php:92
+#: admin/views/settings.php:185
+msgid "Default Template"
+msgstr "Standardvorlage"
+
+#: admin/views/invoice-form.php:102
+msgid "Pre-built"
+msgstr "Vorgefertigt"
+
+#: admin/views/invoice-form.php:115
+msgid "Invoice Items"
+msgstr "Rechnungspositionen"
+
+#: admin/views/invoice-form.php:119
+#: includes/class-ig-template-engine.php:376
+#: templates/template-1.php:187
+#: templates/template-2.php:206
+#: templates/template-default.php:232
+msgid "Description"
+msgstr "Beschreibung"
+
+#: admin/views/invoice-form.php:120
+#: includes/class-ig-template-engine.php:377
+#: templates/template-2.php:207
+#: templates/template-default.php:233
+msgid "Quantity"
+msgstr "Menge"
+
+#: admin/views/invoice-form.php:121
+#: includes/class-ig-template-engine.php:378
+#: templates/template-1.php:189
+#: templates/template-default.php:234
+msgid "Price"
+msgstr "Preis"
+
+#: admin/views/invoice-form.php:142
+msgid "Tax Rate (%)"
+msgstr "Steuersatz (%)"
+
+#: admin/views/invoice-form.php:146
+msgid "Add Item"
+msgstr "Position hinzufügen"
+
+#: admin/views/invoice-form.php:160
+#: templates/template-2.php:257
+#: templates/template-default.php:283
+#: templates/template-project.php:281
+msgid "Subtotal:"
+msgstr "Zwischensumme:"
+
+#: admin/views/invoice-form.php:164
+#: includes/class-ig-template-engine.php:246
+#: templates/template-2.php:262
+#: templates/template-default.php:288
+#: templates/template-project.php:286
+msgid "Tax:"
+msgstr "Steuer:"
+
+#: admin/views/invoice-form.php:168
+#: templates/template-2.php:267
+#: templates/template-default.php:293
+#: templates/template-project.php:291
+msgid "Total:"
+msgstr "Gesamt:"
+
+#: admin/views/invoice-form.php:175
+msgid "Notes / Terms"
+msgstr "Notizen / Bedingungen"
+
+#: admin/views/invoice-form.php:179
+msgid "Payment Method"
+msgstr "Zahlungsmethode"
+
+#: admin/views/invoice-form.php:188
+#: includes/class-ig-config.php:107
+msgid "Bank Transfer"
+msgstr "Banküberweisung"
+
+#: admin/views/invoice-form.php:235
+msgid "Save Invoice"
+msgstr "Rechnung speichern"
+
+#: admin/views/invoice-form.php:237
+#: admin/views/invoices-list.php:75
+msgid "Download PDF"
+msgstr "PDF herunterladen"
+
+#: admin/views/invoice-form.php:251
+msgid "Send Invoice via Email"
+msgstr "Rechnung per E-Mail senden"
+
+#: admin/views/invoice-form.php:261
+msgid "To Email"
+msgstr "An E-Mail"
+
+#: admin/views/invoice-form.php:266
+msgid "Subject"
+msgstr "Betreff"
+
+#: admin/views/invoice-form.php:271
+msgid "Message"
+msgstr "Nachricht"
+
+#: admin/views/invoice-form.php:276
+msgid "Send Email"
+msgstr "E-Mail senden"
+
+#: admin/views/invoices-list.php:15
+#: includes/class-ig-admin.php:73
+#: includes/class-ig-admin.php:74
+#: includes/class-ig-admin.php:150
+msgid "Invoices"
+msgstr "Rechnungen"
+
+#: admin/views/invoices-list.php:25
+msgid "All"
+msgstr "Alle"
+
+#: admin/views/invoices-list.php:78
+msgid "Delete Invoice"
+msgstr "Rechnung löschen"
+
+#: admin/views/settings.php:13
+msgid "Invoice Generator Settings"
+msgstr "Rechnungsgenerator-Einstellungen"
+
+#: admin/views/settings.php:18
+msgid "Invoice Numbering"
+msgstr "Rechnungsnummerierung"
+
+#: admin/views/settings.php:21
+msgid "Prefix"
+msgstr "Präfix"
+
+#: admin/views/settings.php:24
+msgid "Prefix for invoice numbers (e.g., INV-)"
+msgstr "Präfix für Rechnungsnummern (z.B. RECH-)"
+
+#: admin/views/settings.php:28
+msgid "Suffix"
+msgstr "Suffix"
+
+#: admin/views/settings.php:31
+msgid "Suffix for invoice numbers (e.g., -2024)"
+msgstr "Suffix für Rechnungsnummern (z.B. -2024)"
+
+#: admin/views/settings.php:35
+msgid "Number Padding"
+msgstr "Zahlen-Auffüllung"
+
+#: admin/views/settings.php:38
+msgid "Number of digits for invoice numbers (e.g., 4 = 0001, 5 = 00001)"
+msgstr "Anzahl der Ziffern für Rechnungsnummern (z.B. 4 = 0001, 5 = 00001)"
+
+#: admin/views/settings.php:43
+msgid "Currency Settings"
+msgstr "Währungseinstellungen"
+
+#: admin/views/settings.php:46
+msgid "Currency Code"
+msgstr "Währungscode"
+
+#: admin/views/settings.php:69
+msgid "ISO currency code"
+msgstr "ISO-Währungscode"
+
+#: admin/views/settings.php:73
+msgid "Currency Symbol"
+msgstr "Währungssymbol"
+
+#: admin/views/settings.php:95
+msgid "Currency symbol to display"
+msgstr "Anzuzeigendes Währungssymbol"
+
+#: admin/views/settings.php:100
+#: admin/views/settings.php:103
+msgid "Date Format"
+msgstr "Datumsformat"
+
+#: admin/views/settings.php:106
+msgid "PHP date format (e.g., Y-m-d for 2024-01-15)"
+msgstr "PHP-Datumsformat (z.B. Y-m-d für 2024-01-15)"
+
+#: admin/views/settings.php:111
+msgid "Email Settings"
+msgstr "E-Mail-Einstellungen"
+
+#: admin/views/settings.php:114
+msgid "From Name"
+msgstr "Absendername"
+
+#: admin/views/settings.php:117
+msgid "Name to use as sender"
+msgstr "Als Absender verwendeter Name"
+
+#: admin/views/settings.php:121
+msgid "From Email"
+msgstr "Absender-E-Mail"
+
+#: admin/views/settings.php:124
+msgid "Email address to use as sender"
+msgstr "Als Absender zu verwendende E-Mail-Adresse"
+
+#: admin/views/settings.php:128
+msgid "Email Subject Template"
+msgstr "E-Mail-Betreff-Vorlage"
+
+#: admin/views/settings.php:131
+msgid "Use {invoice_number} as placeholder"
+msgstr "{invoice_number} als Platzhalter verwenden"
+
+#: admin/views/settings.php:136
+msgid "Design & Colors"
+msgstr "Design & Farben"
+
+#: admin/views/settings.php:137
+msgid "Customize the color scheme of the admin interface. Changes will be applied immediately."
+msgstr "Passen Sie das Farbschema der Admin-Oberfläche an. Änderungen werden sofort angewendet."
+
+#: admin/views/settings.php:140
+msgid "Primary Color"
+msgstr "Primärfarbe"
+
+#: admin/views/settings.php:143
+msgid "Main brand color used for buttons, links, and accents"
+msgstr "Haupt-Markenfarbe für Schaltflächen, Links und Akzente"
+
+#: admin/views/settings.php:147
+msgid "Secondary Color"
+msgstr "Sekundärfarbe"
+
+#: admin/views/settings.php:150
+msgid "Secondary accent color"
+msgstr "Sekundäre Akzentfarbe"
+
+#: admin/views/settings.php:154
+msgid "Success Color"
+msgstr "Erfolgsfarbe"
+
+#: admin/views/settings.php:157
+msgid "Color for success messages and paid status"
+msgstr "Farbe für Erfolgsmeldungen und bezahlten Status"
+
+#: admin/views/settings.php:161
+msgid "Error Color"
+msgstr "Fehlerfarbe"
+
+#: admin/views/settings.php:164
+msgid "Color for error messages and overdue status"
+msgstr "Farbe für Fehlermeldungen und überfälligen Status"
+
+#: admin/views/settings.php:168
+msgid "Warning Color"
+msgstr "Warnfarbe"
+
+#: admin/views/settings.php:171
+msgid "Color for warning messages"
+msgstr "Farbe für Warnmeldungen"
+
+#: admin/views/settings.php:177
+msgid "Reset to Defaults"
+msgstr "Auf Standardwerte zurücksetzen"
+
+#: admin/views/settings.php:182
+msgid "Template Settings"
+msgstr "Vorlagen-Einstellungen"
+
+#: admin/views/settings.php:188
+msgid "System Default"
+msgstr "System-Standard"
+
+#: admin/views/settings.php:195
+msgid "Default template to use for new invoices"
+msgstr "Standardvorlage für neue Rechnungen"
+
+#: admin/views/settings.php:199
+msgid "Show Company Name with Logo"
+msgstr "Firmennamen mit Logo anzeigen"
+
+#: admin/views/settings.php:203
+msgid "Show company name below logo when logo exists"
+msgstr "Firmennamen unter dem Logo anzeigen, wenn ein Logo vorhanden ist"
+
+#: admin/views/settings.php:205
+msgid "If unchecked, company name will be hidden when a logo is present"
+msgstr "Wenn nicht markiert, wird der Firmenname ausgeblendet, wenn ein Logo vorhanden ist"
+
+#: admin/views/template-builder.php:106
+#: admin/views/templates-list.php:51
+msgid "Edit Template"
+msgstr "Vorlage bearbeiten"
+
+#: admin/views/template-builder.php:106
+#: admin/views/templates-list.php:16
+msgid "Create Template"
+msgstr "Vorlage erstellen"
+
+#: admin/views/template-builder.php:117
+msgid "Template Name"
+msgstr "Vorlagenname"
+
+#: admin/views/template-builder.php:124
+msgid "Set as default template"
+msgstr "Als Standardvorlage festlegen"
+
+#: admin/views/template-builder.php:128
+msgid "Bill From Section"
+msgstr "Abschnitt Rechnung von"
+
+#: admin/views/template-builder.php:129
+#: admin/views/template-builder.php:178
+msgid "Select which fields to display and their order"
+msgstr "Wählen Sie aus, welche Felder angezeigt werden sollen und deren Reihenfolge"
+
+#: admin/views/template-builder.php:133
+#: admin/views/template-builder.php:182
+msgid "Available Fields"
+msgstr ""
+
+#: admin/views/template-builder.php:157
+#: admin/views/template-builder.php:229
+msgid "Selected Fields (Drag to reorder)"
+msgstr ""
+
+#: admin/views/template-builder.php:177
+msgid "Bill To Section"
+msgstr "Abschnitt Rechnung an"
+
+#: admin/views/template-builder.php:251
+msgid "Save Template"
+msgstr "Vorlage speichern"
+
+#: admin/views/template-builder.php:253
+msgid "Preview"
+msgstr "Vorschau"
+
+#: admin/views/template-builder.php:263
+msgid "Template Preview"
+msgstr ""
+
+#: admin/views/templates-list.php:14
+#: includes/class-ig-admin.php:100
+#: includes/class-ig-admin.php:101
+#: includes/class-ig-admin.php:204
+msgid "Templates"
+msgstr "Vorlagen"
+
+#: admin/views/templates-list.php:17
+msgid "Reload Pre-built Templates"
+msgstr ""
+
+#: admin/views/templates-list.php:23
+msgid "Pre-built templates have been reloaded successfully."
+msgstr ""
+
+#: admin/views/templates-list.php:35
+msgid "Type"
+msgstr "Typ"
+
+#: admin/views/templates-list.php:36
+msgid "Default"
+msgstr ""
+
+#: admin/views/templates-list.php:37
+msgid "Created"
+msgstr ""
+
+#: admin/views/templates-list.php:47
+msgid "Yes"
+msgstr "Ja"
+
+#: admin/views/templates-list.php:47
+msgid "No"
+msgstr "Nein"
+
+#: admin/views/templates-list.php:54
+msgid "Delete Template"
+msgstr "Vorlage löschen"
+
+#: admin/views/templates-list.php:63
+msgid "No templates found."
+msgstr "Keine Vorlagen gefunden."
+
+#: admin/views/templates-list.php:72
+msgid "Pre-built Templates"
+msgstr ""
+
+#: admin/views/templates-list.php:73
+msgid "The plugin includes several pre-built templates that you can use as starting points."
+msgstr ""
+
+#: includes/class-ig-admin.php:64
+#: includes/class-ig-admin.php:65
+#: includes/class-ig-admin.php:129
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: includes/class-ig-admin.php:109
+#: includes/class-ig-admin.php:110
+#: includes/class-ig-admin.php:216
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: includes/class-ig-admin.php:144
+msgid "Invoice Form"
+msgstr ""
+
+#: includes/class-ig-admin.php:166
+msgid "Client Form"
+msgstr ""
+
+#: includes/class-ig-admin.php:198
+msgid "Template Builder"
+msgstr "Vorlagen-Editor"
+
+#: includes/class-ig-ajax.php:66
+msgid "Security check failed."
+msgstr ""
+
+#: includes/class-ig-ajax.php:93
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: includes/class-ig-ajax.php:105
+#: includes/class-ig-ajax.php:221
+#: includes/class-ig-ajax.php:282
+#: includes/class-ig-ajax.php:402
+#: includes/class-ig-ajax.php:503
+#: includes/class-ig-ajax.php:564
+#: includes/class-ig-ajax.php:666
+#: includes/class-ig-ajax.php:753
+msgid "Too many requests. Please try again later."
+msgstr ""
+
+#: includes/class-ig-ajax.php:172
+#: includes/class-ig-ajax.php:297
+#: includes/class-ig-ajax.php:516
+#: includes/class-ig-ajax.php:593
+msgid "Validation failed"
+msgstr ""
+
+#: includes/class-ig-ajax.php:183
+msgid "Invoice updated successfully."
+msgstr ""
+
+#: includes/class-ig-ajax.php:197
+msgid "Invoice created successfully."
+msgstr ""
+
+#: includes/class-ig-ajax.php:209
+msgid "Failed to save invoice."
+msgstr ""
+
+#: includes/class-ig-ajax.php:227
+#: includes/class-ig-ajax.php:261
+msgid "Invalid invoice ID."
+msgstr ""
+
+#: includes/class-ig-ajax.php:236
+msgid "Invoice deleted successfully."
+msgstr "Rechnung erfolgreich gelöscht."
+
+#: includes/class-ig-ajax.php:245
+msgid "Failed to delete invoice."
+msgstr ""
+
+#: includes/class-ig-ajax.php:270
+msgid "Invoice sent successfully."
+msgstr ""
+
+#: includes/class-ig-ajax.php:309
+msgid "Client updated successfully."
+msgstr ""
+
+#: includes/class-ig-ajax.php:321
+msgid "Client created successfully."
+msgstr ""
+
+#: includes/class-ig-ajax.php:333
+msgid "Failed to save client."
+msgstr ""
+
+#: includes/class-ig-ajax.php:408
+msgid "Invalid client ID."
+msgstr ""
+
+#: includes/class-ig-ajax.php:418
+msgid "Client deleted successfully."
+msgstr "Kunde erfolgreich gelöscht."
+
+#: includes/class-ig-ajax.php:427
+msgid "Failed to delete client."
+msgstr ""
+
+#: includes/class-ig-ajax.php:446
+msgid "Client ID and field name are required."
+msgstr ""
+
+#: includes/class-ig-ajax.php:459
+msgid "Field updated successfully."
+msgstr ""
+
+#: includes/class-ig-ajax.php:461
+msgid "Failed to update field."
+msgstr ""
+
+#: includes/class-ig-ajax.php:466
+msgid "Field added successfully."
+msgstr ""
+
+#: includes/class-ig-ajax.php:468
+msgid "Failed to add field."
+msgstr ""
+
+#: includes/class-ig-ajax.php:482
+msgid "Invalid field ID."
+msgstr ""
+
+#: includes/class-ig-ajax.php:489
+msgid "Field deleted successfully."
+msgstr ""
+
+#: includes/class-ig-ajax.php:491
+msgid "Failed to delete field."
+msgstr ""
+
+#: includes/class-ig-ajax.php:526
+msgid "File upload validation failed"
+msgstr ""
+
+#: includes/class-ig-ajax.php:538
+msgid "Failed to upload logo."
+msgstr ""
+
+#: includes/class-ig-ajax.php:546
+msgid "Company settings saved successfully."
+msgstr "Unternehmenseinstellungen erfolgreich gespeichert."
+
+#: includes/class-ig-ajax.php:552
+msgid "Failed to save company settings."
+msgstr ""
+
+#: includes/class-ig-ajax.php:632
+msgid "Template updated successfully."
+msgstr ""
+
+#: includes/class-ig-ajax.php:642
+msgid "Template saved successfully."
+msgstr "Vorlage erfolgreich gespeichert."
+
+#: includes/class-ig-ajax.php:654
+msgid "Failed to save template."
+msgstr ""
+
+#: includes/class-ig-ajax.php:672
+msgid "Invalid template ID."
+msgstr ""
+
+#: includes/class-ig-ajax.php:681
+msgid "Template deleted successfully."
+msgstr "Vorlage erfolgreich gelöscht."
+
+#: includes/class-ig-ajax.php:690
+msgid "Failed to delete template."
+msgstr ""
+
+#: includes/class-ig-ajax.php:706
+msgid "Please select an invoice to preview."
+msgstr ""
+
+#: includes/class-ig-ajax.php:779
+msgid "Settings saved successfully."
+msgstr "Einstellungen erfolgreich gespeichert."
+
+#: includes/class-ig-assets.php:106
+msgid "Are you sure you want to delete this item?"
+msgstr ""
+
+#: includes/class-ig-assets.php:107
+msgid "Saving..."
+msgstr "Speichern..."
+
+#: includes/class-ig-assets.php:108
+msgid "Saved successfully!"
+msgstr ""
+
+#: includes/class-ig-assets.php:109
+msgid "An error occurred. Please try again."
+msgstr ""
+
+#: includes/class-ig-config.php:98
+msgid "Cancelled"
+msgstr ""
+
+#: includes/class-ig-config.php:108
+msgid "PayPal"
+msgstr ""
+
+#: includes/class-ig-config.php:109
+msgid "Stripe"
+msgstr ""
+
+#: includes/class-ig-config.php:110
+msgid "Cash"
+msgstr ""
+
+#: includes/class-ig-config.php:111
+msgid "Check"
+msgstr ""
+
+#: includes/class-ig-config.php:112
+msgid "Other"
+msgstr ""
+
+#: includes/class-ig-email.php:44
+msgid "Invoice not found."
+msgstr "Rechnung nicht gefunden."
+
+#: includes/class-ig-email.php:50
+msgid "Client not found."
+msgstr "Kunde nicht gefunden."
+
+#: includes/class-ig-email.php:59
+msgid "Client email address is required."
+msgstr ""
+
+#: includes/class-ig-email.php:78
+msgid "Failed to generate PDF."
+msgstr ""
+
+#: includes/class-ig-email.php:119
+msgid "Failed to send email."
+msgstr ""
+
+#. translators: %s: Client name
+#: includes/class-ig-email.php:128
+#, php-format
+msgid "Dear %s,"
+msgstr "Sehr geehrte(r) %s,"
+
+#: includes/class-ig-email.php:129
+msgid "Please find attached invoice #"
+msgstr "Anbei finden Sie die Rechnung Nr."
+
+#. translators: %s: Due date
+#: includes/class-ig-email.php:134
+#, php-format
+msgid "Payment is due by %s."
+msgstr "Die Zahlung ist fällig bis %s."
+
+#: includes/class-ig-email.php:138
+msgid "Total Amount:"
+msgstr "Gesamtbetrag:"
+
+#: includes/class-ig-email.php:144
+#: templates/template-default.php:308
+#: templates/template-project.php:306
+msgid "Thank you for your business!"
+msgstr "Vielen Dank für Ihr Vertrauen!"
+
+#: includes/class-ig-helper.php:198
+msgid "File upload error."
+msgstr "Fehler beim Datei-Upload."
+
+#. translators: %s: Maximum file size
+#: includes/class-ig-helper.php:205
+#, php-format
+msgid "File size exceeds maximum allowed size of %s."
+msgstr "Dateigröße überschreitet die maximal zulässige Größe von %s."
+
+#: includes/class-ig-helper.php:211
+msgid "Invalid file type. Only JPEG, PNG, and GIF are allowed."
+msgstr "Ungültiger Dateityp. Nur JPEG, PNG und GIF sind zulässig."
+
+#: includes/class-ig-pdf.php:47
+msgid "Unable to generate PDF. Invoice not found."
+msgstr ""
+
+#: includes/class-ig-template-engine.php:245
+#: templates/template-2.php:171
+#: templates/template-default.php:184
+#: templates/template-project.php:184
+msgid "Due Date:"
+msgstr ""
+
+#: includes/class-ig-template-engine.php:331
+#: templates/template-1.php:213
+#: templates/template-2.php:232
+#: templates/template-default.php:258
+#: templates/template-project.php:256
+msgid "Payment Method: Bank Transfer"
+msgstr ""
+
+#: includes/class-ig-template-engine.php:334
+#: templates/template-1.php:215
+#: templates/template-2.php:234
+#: templates/template-default.php:260
+#: templates/template-project.php:258
+msgid "Bank Name:"
+msgstr ""
+
+#: includes/class-ig-template-engine.php:337
+#: templates/template-1.php:218
+#: templates/template-2.php:237
+#: templates/template-default.php:263
+#: templates/template-project.php:261
+msgid "Account Number:"
+msgstr ""
+
+#: includes/class-ig-template-engine.php:340
+#: templates/template-1.php:221
+#: templates/template-2.php:240
+#: templates/template-default.php:266
+#: templates/template-project.php:264
+msgid "Account Title:"
+msgstr ""
+
+#: includes/class-ig-template-engine.php:343
+#: templates/template-1.php:224
+#: templates/template-2.php:243
+#: templates/template-default.php:269
+#: templates/template-project.php:267
+msgid "Account Branch:"
+msgstr ""
+
+#: includes/class-ig-template-engine.php:346
+#: templates/template-1.php:227
+#: templates/template-2.php:246
+#: templates/template-default.php:272
+#: templates/template-project.php:270
+msgid "IBAN:"
+msgstr ""
+
+#: includes/class-ig-template-engine.php:349
+#: templates/template-1.php:230
+#: templates/template-2.php:249
+#: templates/template-default.php:275
+#: templates/template-project.php:273
+msgid "IFSC Code:"
+msgstr ""
+
+#: includes/class-ig-template-engine.php:362
+msgid "No items"
+msgstr "Keine Einträge"
+
+#: includes/class-ig-template-engine.php:372
+#: templates/template-project.php:232
+msgid "Project Description"
+msgstr ""
+
+#: includes/class-ig-template-engine.php:373
+#: templates/template-project.php:233
+msgid "Project Price"
+msgstr ""
+
+#: includes/class-ig-template-engine.php:374
+#: templates/template-project.php:234
+msgid "Project Amount"
+msgstr ""
+
+#: includes/class-ig-validator.php:22
+msgid "Valid client is required."
+msgstr ""
+
+#: includes/class-ig-validator.php:27
+msgid "Invoice date is required."
+msgstr "Rechnungsdatum ist erforderlich."
+
+#: includes/class-ig-validator.php:29
+msgid "Invalid invoice date format."
+msgstr ""
+
+#: includes/class-ig-validator.php:34
+msgid "Invalid due date format."
+msgstr ""
+
+#: includes/class-ig-validator.php:40
+msgid "Invalid invoice status."
+msgstr ""
+
+#: includes/class-ig-validator.php:45
+msgid "Invalid subtotal amount."
+msgstr ""
+
+#: includes/class-ig-validator.php:49
+msgid "Invalid tax amount."
+msgstr ""
+
+#: includes/class-ig-validator.php:53
+msgid "Invalid total amount."
+msgstr ""
+
+#: includes/class-ig-validator.php:58
+#: includes/class-ig-validator.php:64
+msgid "At least one item is required."
+msgstr "Mindestens eine Position ist erforderlich."
+
+#: includes/class-ig-validator.php:62
+msgid "Invalid items format."
+msgstr ""
+
+#: includes/class-ig-validator.php:79
+msgid "Client name is required."
+msgstr "Kundenname ist erforderlich."
+
+#: includes/class-ig-validator.php:81
+msgid "Client name is too long (max 255 characters)."
+msgstr ""
+
+#: includes/class-ig-validator.php:86
+#: includes/class-ig-validator.php:115
+msgid "Invalid email address."
+msgstr ""
+
+#: includes/class-ig-validator.php:91
+msgid "Invalid phone number format."
+msgstr ""
+
+#: includes/class-ig-validator.php:96
+msgid "ZIP code is too long."
+msgstr ""
+
+#: includes/class-ig-validator.php:110
+msgid "Company name is required."
+msgstr ""
+
+#: includes/class-ig-validator.php:120
+msgid "Invalid website URL."
+msgstr ""
+
+#: includes/class-ig-validator.php:134
+msgid "Template name is required."
+msgstr "Vorlagenname ist erforderlich."
+
+#: includes/class-ig-validator.php:139
+msgid "Template HTML content is required."
+msgstr ""
+
+#: includes/class-ig-validator.php:145
+msgid "Invalid template type."
+msgstr ""
+
+#: templates/template-1.php:147
+#: templates/template-2.php:154
+#: templates/template-default.php:179
+#: templates/template-project.php:179
+msgid "INVOICE"
+msgstr ""
+
+#: templates/template-1.php:159
+msgid "From"
+msgstr "Von"
+
+#: templates/template-1.php:171
+#: templates/template-2.php:190
+msgid "Bill To"
+msgstr ""
+
+#: templates/template-1.php:188
+msgid "Qty"
+msgstr "Menge"
+
+#: templates/template-1.php:238
+msgid "Subtotal"
+msgstr "Zwischensumme"
+
+#: templates/template-1.php:243
+msgid "Tax"
+msgstr "Steuer"
+
+#: templates/template-1.php:257
+msgid "Notes"
+msgstr "Notizen"
+
+#: templates/template-2.php:166
+msgid "Invoice Number:"
+msgstr ""
+
+#: templates/template-2.php:169
+#: templates/template-default.php:182
+#: templates/template-project.php:182
+msgid "Date:"
+msgstr "Datum:"
+
+#: templates/template-2.php:178
+msgid "Bill From"
+msgstr ""
+
+#: templates/template-2.php:208
+msgid "Unit Price"
+msgstr ""
+
+#: templates/template-2.php:209
+msgid "Amount"
+msgstr "Betrag"
+
+#: templates/template-2.php:276
+#: templates/template-default.php:302
+#: templates/template-project.php:300
+msgid "Notes:"
+msgstr ""
+
+#: templates/template-default.php:181
+#: templates/template-project.php:181
+msgid "Invoice #:"
+msgstr ""
+
+#: templates/template-default.php:192
+#: templates/template-project.php:192
+msgid "Bill From:"
+msgstr "Rechnung von:"
+
+#: templates/template-default.php:205
+#: templates/template-default.php:214
+#: templates/template-project.php:205
+#: templates/template-project.php:214
+msgid "Tel:"
+msgstr ""
+
+#: templates/template-default.php:206
+#: templates/template-project.php:206
+msgid "E-Mail:"
+msgstr ""
+
+#: templates/template-default.php:210
+#: templates/template-project.php:210
+msgid "Bill To:"
+msgstr "Rechnung an:"

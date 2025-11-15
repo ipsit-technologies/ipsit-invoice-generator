@@ -2,12 +2,17 @@
 /**
  * Client Form View
  */
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- These are local variables in a view template, not global variables
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
 $db = IG_Database::get_instance();
-$client_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+// phpcs:disable WordPress.Security.NonceVerification.Recommended -- GET parameter used for navigation/routing only
+$client_id = isset($_GET['id']) ? intval(wp_unslash($_GET['id'])) : 0;
+// phpcs:enable WordPress.Security.NonceVerification.Recommended
 $client = $client_id > 0 ? $db->get_client($client_id) : null;
 $custom_fields = $client_id > 0 ? $db->get_client_fields($client_id) : array();
 ?>
@@ -83,7 +88,7 @@ $custom_fields = $client_id > 0 ? $db->get_client_fields($client_id) : array();
         
         <p class="submit">
             <button type="submit" class="button button-primary"><?php echo esc_html__('Save Client', 'ipsit-invoice-generator'); ?></button>
-            <a href="<?php echo admin_url('admin.php?page=ipsit-ig-clients'); ?>" class="button"><?php echo esc_html__('Cancel', 'ipsit-invoice-generator'); ?></a>
+            <a href="<?php echo esc_url(admin_url('admin.php?page=ipsit-ig-clients')); ?>" class="button"><?php echo esc_html__('Cancel', 'ipsit-invoice-generator'); ?></a>
         </p>
     </form>
 </div>

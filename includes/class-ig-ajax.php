@@ -58,7 +58,8 @@ class IG_Ajax {
      */
     private function verify_nonce(string $required_capability = 'manage_options') {
         // Check nonce
-        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'ig_admin_nonce')) {
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Nonce is verified, not sanitized
+        if (!isset($_POST['nonce']) || !wp_verify_nonce(wp_unslash($_POST['nonce']), 'ig_admin_nonce')) {
             IG_Logger::warning('Nonce verification failed', array(
                 'user_id' => get_current_user_id(),
                 'ip' => IG_Helper::get_user_ip()
@@ -100,6 +101,8 @@ class IG_Ajax {
     public function save_invoice() {
         $this->verify_nonce(IG_Config::CAP_MANAGE_INVOICES);
         
+        // phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified in verify_nonce() above
+        
         // Rate limiting
         if (!IG_Helper::check_rate_limit('save_invoice')) {
             wp_send_json_error(array('message' => __('Too many requests. Please try again later.', 'ipsit-invoice-generator')));
@@ -107,18 +110,19 @@ class IG_Ajax {
         
         $db = IG_Database::get_instance();
         
-        $invoice_id = isset($_POST['invoice_id']) ? intval($_POST['invoice_id']) : 0;
+        $invoice_id = isset($_POST['invoice_id']) ? intval(wp_unslash($_POST['invoice_id'])) : 0;
         
         // Parse items first for validation
-        $items = isset($_POST['items']) ? $_POST['items'] : array();
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Array is unslashed and sanitized in loop
+        $items = isset($_POST['items']) ? wp_unslash($_POST['items']) : array();
         $items_array = array();
         $subtotal = 0;
         
         if (is_array($items)) {
             foreach ($items as $item) {
-                $description = isset($item['description']) ? sanitize_text_field($item['description']) : '';
-                $quantity = isset($item['quantity']) ? floatval($item['quantity']) : 0;
-                $price = isset($item['price']) ? floatval($item['price']) : 0;
+                $description = isset($item['description']) ? sanitize_text_field(wp_unslash($item['description'])) : '';
+                $quantity = isset($item['quantity']) ? floatval(wp_unslash($item['quantity'])) : 0;
+                $price = isset($item['price']) ? floatval(wp_unslash($item['price'])) : 0;
                 
                 if (!empty($description)) {
                     $items_array[] = array(
@@ -131,37 +135,38 @@ class IG_Ajax {
             }
         }
         
-        $tax_rate = isset($_POST['tax_rate']) ? floatval($_POST['tax_rate']) : 0;
+        $tax_rate = isset($_POST['tax_rate']) ? floatval(wp_unslash($_POST['tax_rate'])) : 0;
         $tax = $subtotal * ($tax_rate / 100);
         $total = $subtotal + $tax;
         
-        $template_id = isset($_POST['template_id']) ? sanitize_text_field($_POST['template_id']) : null;
+        $template_id = isset($_POST['template_id']) ? sanitize_text_field(wp_unslash($_POST['template_id'])) : null;
         if ($template_id === '' || $template_id === '0') {
             $template_id = null;
         }
         
         // Payment method fields
-        $payment_method = isset($_POST['enable_payment_method']) && $_POST['enable_payment_method'] === '1' ? 'bank_transfer' : null;
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Only checked for equality, not used in output
+        $payment_method = isset($_POST['enable_payment_method']) && wp_unslash($_POST['enable_payment_method']) === '1' ? 'bank_transfer' : null;
         
         // Prepare data
         $data = array(
-            'client_id' => isset($_POST['client_id']) ? intval($_POST['client_id']) : 0,
-            'invoice_date' => isset($_POST['invoice_date']) ? sanitize_text_field($_POST['invoice_date']) : '',
-            'due_date' => (isset($_POST['due_date']) && !empty($_POST['due_date'])) ? sanitize_text_field($_POST['due_date']) : null,
-            'status' => isset($_POST['status']) ? sanitize_text_field($_POST['status']) : 'draft',
+            'client_id' => isset($_POST['client_id']) ? intval(wp_unslash($_POST['client_id'])) : 0,
+            'invoice_date' => isset($_POST['invoice_date']) ? sanitize_text_field(wp_unslash($_POST['invoice_date'])) : '',
+            'due_date' => (isset($_POST['due_date']) && !empty($_POST['due_date'])) ? sanitize_text_field(wp_unslash($_POST['due_date'])) : null,
+            'status' => isset($_POST['status']) ? sanitize_text_field(wp_unslash($_POST['status'])) : 'draft',
             'items' => json_encode($items_array),
             'subtotal' => $subtotal,
             'tax' => $tax,
             'total' => $total,
-            'notes' => isset($_POST['notes']) ? sanitize_textarea_field($_POST['notes']) : '',
+            'notes' => isset($_POST['notes']) ? sanitize_textarea_field(wp_unslash($_POST['notes'])) : '',
             'template_id' => $template_id,
             'payment_method' => $payment_method,
-            'bank_name' => isset($_POST['bank_name']) ? sanitize_text_field($_POST['bank_name']) : null,
-            'account_number' => isset($_POST['account_number']) ? sanitize_text_field($_POST['account_number']) : null,
-            'account_title' => isset($_POST['account_title']) ? sanitize_text_field($_POST['account_title']) : null,
-            'account_branch' => isset($_POST['account_branch']) ? sanitize_text_field($_POST['account_branch']) : null,
-            'iban' => isset($_POST['iban']) ? sanitize_text_field($_POST['iban']) : null,
-            'ifsc_code' => isset($_POST['ifsc_code']) ? sanitize_text_field($_POST['ifsc_code']) : null,
+            'bank_name' => isset($_POST['bank_name']) ? sanitize_text_field(wp_unslash($_POST['bank_name'])) : null,
+            'account_number' => isset($_POST['account_number']) ? sanitize_text_field(wp_unslash($_POST['account_number'])) : null,
+            'account_title' => isset($_POST['account_title']) ? sanitize_text_field(wp_unslash($_POST['account_title'])) : null,
+            'account_branch' => isset($_POST['account_branch']) ? sanitize_text_field(wp_unslash($_POST['account_branch'])) : null,
+            'iban' => isset($_POST['iban']) ? sanitize_text_field(wp_unslash($_POST['iban'])) : null,
+            'ifsc_code' => isset($_POST['ifsc_code']) ? sanitize_text_field(wp_unslash($_POST['ifsc_code'])) : null,
         );
         
         // Validate invoice data
@@ -175,29 +180,29 @@ class IG_Ajax {
         }
         
         try {
-            if ($invoice_id > 0) {
-                // Update existing invoice
-                $result = $db->update_invoice($invoice_id, $data);
-                if ($result !== false) {
+        if ($invoice_id > 0) {
+            // Update existing invoice
+            $result = $db->update_invoice($invoice_id, $data);
+            if ($result !== false) {
                     wp_send_json_success(array(
                         'message' => __('Invoice updated successfully.', 'ipsit-invoice-generator'),
                         'invoice_id' => $invoice_id
                     ));
-                } else {
-                    throw new Exception('Failed to update invoice in database');
-                }
             } else {
-                // Create new invoice
-                $invoice_number = $db->get_next_invoice_number();
-                $data['invoice_number'] = $invoice_number;
-                $invoice_id = $db->insert_invoice($data);
-                
-                if ($invoice_id) {
+                    throw new Exception('Failed to update invoice in database');
+            }
+        } else {
+            // Create new invoice
+            $invoice_number = $db->get_next_invoice_number();
+            $data['invoice_number'] = $invoice_number;
+            $invoice_id = $db->insert_invoice($data);
+            
+            if ($invoice_id) {
                     wp_send_json_success(array(
                         'message' => __('Invoice created successfully.', 'ipsit-invoice-generator'),
                         'invoice_id' => $invoice_id
                     ));
-                } else {
+            } else {
                     throw new Exception('Failed to create invoice in database');
                 }
             }
@@ -207,7 +212,8 @@ class IG_Ajax {
                 'invoice_id' => $invoice_id
             ));
             wp_send_json_error(array('message' => __('Failed to save invoice.', 'ipsit-invoice-generator')));
-        }
+            }
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
     }
     
     /**
@@ -215,13 +221,14 @@ class IG_Ajax {
      */
     public function delete_invoice() {
         $this->verify_nonce(IG_Config::CAP_MANAGE_INVOICES);
+        // phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified in verify_nonce() above
         
         // Rate limiting
         if (!IG_Helper::check_rate_limit('delete_invoice')) {
             wp_send_json_error(array('message' => __('Too many requests. Please try again later.', 'ipsit-invoice-generator')));
         }
         
-        $invoice_id = isset($_POST['invoice_id']) ? intval($_POST['invoice_id']) : 0;
+        $invoice_id = isset($_POST['invoice_id']) ? intval(wp_unslash($_POST['invoice_id'])) : 0;
         
         if ($invoice_id <= 0) {
             wp_send_json_error(array('message' => __('Invalid invoice ID.', 'ipsit-invoice-generator')));
@@ -230,11 +237,11 @@ class IG_Ajax {
         $db = IG_Database::get_instance();
         
         try {
-            $result = $db->delete_invoice($invoice_id);
-            
-            if ($result !== false) {
-                wp_send_json_success(array('message' => __('Invoice deleted successfully.', 'ipsit-invoice-generator')));
-            } else {
+        $result = $db->delete_invoice($invoice_id);
+        
+        if ($result !== false) {
+            wp_send_json_success(array('message' => __('Invoice deleted successfully.', 'ipsit-invoice-generator')));
+        } else {
                 throw new Exception('Failed to delete invoice from database');
             }
         } catch (Exception $e) {
@@ -244,6 +251,7 @@ class IG_Ajax {
             ));
             wp_send_json_error(array('message' => __('Failed to delete invoice.', 'ipsit-invoice-generator')));
         }
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
     }
     
     /**
@@ -251,11 +259,12 @@ class IG_Ajax {
      */
     public function send_email() {
         $this->verify_nonce();
+        // phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified in verify_nonce() above
         
-        $invoice_id = isset($_POST['invoice_id']) ? intval($_POST['invoice_id']) : 0;
-        $to_email = isset($_POST['to_email']) ? sanitize_email($_POST['to_email']) : null;
-        $subject = isset($_POST['subject']) ? sanitize_text_field($_POST['subject']) : null;
-        $message = isset($_POST['message']) ? wp_kses_post($_POST['message']) : null;
+        $invoice_id = isset($_POST['invoice_id']) ? intval(wp_unslash($_POST['invoice_id'])) : 0;
+        $to_email = isset($_POST['to_email']) ? sanitize_email(wp_unslash($_POST['to_email'])) : null;
+        $subject = isset($_POST['subject']) ? sanitize_text_field(wp_unslash($_POST['subject'])) : null;
+        $message = isset($_POST['message']) ? wp_kses_post(wp_unslash($_POST['message'])) : null;
         
         if ($invoice_id <= 0) {
             wp_send_json_error(array('message' => __('Invalid invoice ID.', 'ipsit-invoice-generator')));
@@ -269,6 +278,7 @@ class IG_Ajax {
         } else {
             wp_send_json_success(array('message' => __('Invoice sent successfully.', 'ipsit-invoice-generator')));
         }
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
     }
     
     /**
@@ -276,6 +286,7 @@ class IG_Ajax {
      */
     public function save_client() {
         $this->verify_nonce(IG_Config::CAP_MANAGE_CLIENTS);
+        // phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified in verify_nonce() above
         
         // Rate limiting
         if (!IG_Helper::check_rate_limit('save_client')) {
@@ -300,28 +311,28 @@ class IG_Ajax {
         }
         
         try {
-            if ($client_id > 0) {
-                $result = $db->update_client($client_id, $data);
-                if ($result !== false) {
-                    // Handle custom fields
-                    $this->save_client_custom_fields($client_id);
+        if ($client_id > 0) {
+            $result = $db->update_client($client_id, $data);
+            if ($result !== false) {
+                // Handle custom fields
+                $this->save_client_custom_fields($client_id);
                     wp_send_json_success(array(
                         'message' => __('Client updated successfully.', 'ipsit-invoice-generator'),
                         'client_id' => $client_id
                     ));
-                } else {
-                    throw new Exception('Failed to update client in database');
-                }
             } else {
-                $client_id = $db->insert_client($data);
-                if ($client_id) {
-                    // Handle custom fields
-                    $this->save_client_custom_fields($client_id);
+                    throw new Exception('Failed to update client in database');
+            }
+        } else {
+            $client_id = $db->insert_client($data);
+            if ($client_id) {
+                // Handle custom fields
+                $this->save_client_custom_fields($client_id);
                     wp_send_json_success(array(
                         'message' => __('Client created successfully.', 'ipsit-invoice-generator'),
                         'client_id' => $client_id
                     ));
-                } else {
+            } else {
                     throw new Exception('Failed to create client in database');
                 }
             }
@@ -331,11 +342,13 @@ class IG_Ajax {
                 'client_id' => $client_id
             ));
             wp_send_json_error(array('message' => __('Failed to save client.', 'ipsit-invoice-generator')));
-        }
+            }
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
     }
     
     /**
      * Save client custom fields
+     * phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified in parent method save_client()
      */
     private function save_client_custom_fields($client_id) {
         $db = IG_Database::get_instance();
@@ -348,15 +361,16 @@ class IG_Ajax {
         }
         
         // Process custom fields from form
-        $custom_fields = isset($_POST['custom_fields']) ? $_POST['custom_fields'] : array();
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Array is unslashed and sanitized in loop
+        $custom_fields = isset($_POST['custom_fields']) ? wp_unslash($_POST['custom_fields']) : array();
         $processed_field_ids = array();
         
         if (is_array($custom_fields)) {
             foreach ($custom_fields as $key => $field_data) {
-                $field_id = isset($field_data['field_id']) ? intval($field_data['field_id']) : 0;
-                $field_name = isset($field_data['field_name']) ? sanitize_text_field($field_data['field_name']) : '';
-                $field_type = isset($field_data['field_type']) ? sanitize_text_field($field_data['field_type']) : 'text';
-                $field_value = isset($field_data['field_value']) ? sanitize_textarea_field($field_data['field_value']) : '';
+                $field_id = isset($field_data['field_id']) ? intval(wp_unslash($field_data['field_id'])) : 0;
+                $field_name = isset($field_data['field_name']) ? sanitize_text_field(wp_unslash($field_data['field_name'])) : '';
+                $field_type = isset($field_data['field_type']) ? sanitize_text_field(wp_unslash($field_data['field_type'])) : 'text';
+                $field_value = isset($field_data['field_value']) ? sanitize_textarea_field(wp_unslash($field_data['field_value'])) : '';
                 
                 // Skip if field name is empty
                 if (empty($field_name)) {
@@ -389,6 +403,7 @@ class IG_Ajax {
         foreach ($fields_to_delete as $field_id) {
             $db->delete_client_field($field_id);
         }
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
     }
     
     /**
@@ -396,6 +411,7 @@ class IG_Ajax {
      */
     public function delete_client() {
         $this->verify_nonce(IG_Config::CAP_MANAGE_CLIENTS);
+        // phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified in verify_nonce() above
         
         // Rate limiting
         if (!IG_Helper::check_rate_limit('delete_client')) {
@@ -412,11 +428,11 @@ class IG_Ajax {
         
         try {
             // The delete_client method now handles transaction and custom fields deletion
-            $result = $db->delete_client($client_id);
-            
-            if ($result !== false) {
-                wp_send_json_success(array('message' => __('Client deleted successfully.', 'ipsit-invoice-generator')));
-            } else {
+        $result = $db->delete_client($client_id);
+        
+        if ($result !== false) {
+            wp_send_json_success(array('message' => __('Client deleted successfully.', 'ipsit-invoice-generator')));
+        } else {
                 throw new Exception('Failed to delete client from database');
             }
         } catch (Exception $e) {
@@ -426,6 +442,7 @@ class IG_Ajax {
             ));
             wp_send_json_error(array('message' => __('Failed to delete client.', 'ipsit-invoice-generator')));
         }
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
     }
     
     /**
@@ -433,14 +450,15 @@ class IG_Ajax {
      */
     public function save_client_field() {
         $this->verify_nonce();
+        // phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified in verify_nonce() above
         
         $db = IG_Database::get_instance();
         
-        $field_id = isset($_POST['field_id']) ? intval($_POST['field_id']) : 0;
-        $client_id = isset($_POST['client_id']) ? intval($_POST['client_id']) : 0;
-        $field_name = isset($_POST['field_name']) ? sanitize_text_field($_POST['field_name']) : '';
-        $field_type = isset($_POST['field_type']) ? sanitize_text_field($_POST['field_type']) : 'text';
-        $field_value = isset($_POST['field_value']) ? sanitize_textarea_field($_POST['field_value']) : '';
+        $field_id = isset($_POST['field_id']) ? intval(wp_unslash($_POST['field_id'])) : 0;
+        $client_id = isset($_POST['client_id']) ? intval(wp_unslash($_POST['client_id'])) : 0;
+        $field_name = isset($_POST['field_name']) ? sanitize_text_field(wp_unslash($_POST['field_name'])) : '';
+        $field_type = isset($_POST['field_type']) ? sanitize_text_field(wp_unslash($_POST['field_type'])) : 'text';
+        $field_value = isset($_POST['field_value']) ? sanitize_textarea_field(wp_unslash($_POST['field_value'])) : '';
         
         if ($client_id <= 0 || empty($field_name)) {
             wp_send_json_error(array('message' => __('Client ID and field name are required.', 'ipsit-invoice-generator')));
@@ -468,6 +486,7 @@ class IG_Ajax {
                 wp_send_json_error(array('message' => __('Failed to add field.', 'ipsit-invoice-generator')));
             }
         }
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
     }
     
     /**
@@ -475,8 +494,9 @@ class IG_Ajax {
      */
     public function delete_client_field() {
         $this->verify_nonce();
+        // phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified in verify_nonce() above
         
-        $field_id = isset($_POST['field_id']) ? intval($_POST['field_id']) : 0;
+        $field_id = isset($_POST['field_id']) ? intval(wp_unslash($_POST['field_id'])) : 0;
         
         if ($field_id <= 0) {
             wp_send_json_error(array('message' => __('Invalid field ID.', 'ipsit-invoice-generator')));
@@ -490,6 +510,7 @@ class IG_Ajax {
         } else {
             wp_send_json_error(array('message' => __('Failed to delete field.', 'ipsit-invoice-generator')));
         }
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
     }
     
     /**
@@ -497,6 +518,7 @@ class IG_Ajax {
      */
     public function save_company() {
         $this->verify_nonce(IG_Config::CAP_MANAGE_SETTINGS);
+        // phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified in verify_nonce() above
         
         // Rate limiting
         if (!IG_Helper::check_rate_limit('save_company')) {
@@ -520,6 +542,7 @@ class IG_Ajax {
         
         // Handle logo upload
         if (!empty($_FILES['logo']['name'])) {
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- $_FILES is validated by validate_logo_upload()
             $upload_errors = IG_Helper::validate_logo_upload($_FILES['logo']);
             if (!empty($upload_errors)) {
                 wp_send_json_error(array(
@@ -529,6 +552,7 @@ class IG_Ajax {
             }
             
             require_once(ABSPATH . 'wp-admin/includes/file.php');
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- $_FILES is validated and handled by wp_handle_upload()
             $uploaded_file = wp_handle_upload($_FILES['logo'], array('test_form' => false));
             
             if ($uploaded_file && !isset($uploaded_file['error'])) {
@@ -540,17 +564,18 @@ class IG_Ajax {
         }
         
         try {
-            $result = $db->update_company($data);
-            
-            if ($result !== false) {
-                wp_send_json_success(array('message' => __('Company settings saved successfully.', 'ipsit-invoice-generator')));
-            } else {
+        $result = $db->update_company($data);
+        
+        if ($result !== false) {
+            wp_send_json_success(array('message' => __('Company settings saved successfully.', 'ipsit-invoice-generator')));
+        } else {
                 throw new Exception('Failed to update company settings in database');
             }
         } catch (Exception $e) {
             IG_Logger::error('Failed to save company settings', array('error' => $e->getMessage()));
             wp_send_json_error(array('message' => __('Failed to save company settings.', 'ipsit-invoice-generator')));
         }
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
     }
     
     /**
@@ -558,6 +583,7 @@ class IG_Ajax {
      */
     public function save_template() {
         $this->verify_nonce(IG_Config::CAP_MANAGE_TEMPLATES);
+        // phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified in verify_nonce() above
         
         // Rate limiting
         if (!IG_Helper::check_rate_limit('save_template')) {
@@ -569,7 +595,7 @@ class IG_Ajax {
         // Ensure settings column exists before saving
         $db->ensure_template_settings_column();
         
-        $template_id = isset($_POST['template_id']) ? intval($_POST['template_id']) : 0;
+        $template_id = isset($_POST['template_id']) ? intval(wp_unslash($_POST['template_id'])) : 0;
         
         // Get existing template to preserve type if updating
         $existing_template = null;
@@ -578,11 +604,13 @@ class IG_Ajax {
         }
         
         $data = array(
-            'name' => isset($_POST['name']) ? sanitize_text_field($_POST['name']) : '',
-            'type' => isset($_POST['type']) ? sanitize_text_field($_POST['type']) : ($existing_template ? $existing_template->type : 'custom'),
-            'html_content' => isset($_POST['html_content']) ? IG_Helper::sanitize_template_html($_POST['html_content']) : '',
-            'css_content' => isset($_POST['css_content']) ? IG_Helper::sanitize_css($_POST['css_content']) : '',
-            'is_default' => isset($_POST['is_default']) ? intval($_POST['is_default']) : 0,
+            'name' => isset($_POST['name']) ? sanitize_text_field(wp_unslash($_POST['name'])) : '',
+            'type' => isset($_POST['type']) ? sanitize_text_field(wp_unslash($_POST['type'])) : ($existing_template ? $existing_template->type : 'custom'),
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized by IG_Helper::sanitize_template_html()
+            'html_content' => isset($_POST['html_content']) ? IG_Helper::sanitize_template_html(wp_unslash($_POST['html_content'])) : '',
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized by IG_Helper::sanitize_css()
+            'css_content' => isset($_POST['css_content']) ? IG_Helper::sanitize_css(wp_unslash($_POST['css_content'])) : '',
+            'is_default' => isset($_POST['is_default']) ? intval(wp_unslash($_POST['is_default'])) : 0,
         );
         
         // Validate template data
@@ -617,6 +645,7 @@ class IG_Ajax {
         
         // Save template settings if provided
         if (isset($_POST['template_settings']) && !empty($_POST['template_settings'])) {
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- JSON is validated and sanitized below
             $settings_raw = wp_unslash($_POST['template_settings']); // Unslash first
             $settings = json_decode($settings_raw, true);
             if (is_array($settings) && json_last_error() === JSON_ERROR_NONE) {
@@ -625,24 +654,24 @@ class IG_Ajax {
         }
         
         try {
-            if ($template_id > 0) {
-                $result = $db->update_template($template_id, $data);
-                if ($result !== false) {
-                    wp_send_json_success(array(
-                        'message' => __('Template updated successfully.', 'ipsit-invoice-generator'),
-                        'template_id' => $template_id
-                    ));
-                } else {
-                    throw new Exception('Failed to update template in database');
-                }
+        if ($template_id > 0) {
+            $result = $db->update_template($template_id, $data);
+            if ($result !== false) {
+                wp_send_json_success(array(
+                    'message' => __('Template updated successfully.', 'ipsit-invoice-generator'),
+                    'template_id' => $template_id
+                ));
             } else {
-                $template_id = $db->insert_template($data);
-                if ($template_id) {
-                    wp_send_json_success(array(
-                        'message' => __('Template saved successfully.', 'ipsit-invoice-generator'),
-                        'template_id' => $template_id
-                    ));
-                } else {
+                    throw new Exception('Failed to update template in database');
+            }
+        } else {
+            $template_id = $db->insert_template($data);
+            if ($template_id) {
+                wp_send_json_success(array(
+                    'message' => __('Template saved successfully.', 'ipsit-invoice-generator'),
+                    'template_id' => $template_id
+                ));
+            } else {
                     throw new Exception('Failed to save template in database');
                 }
             }
@@ -651,8 +680,9 @@ class IG_Ajax {
                 'error' => $e->getMessage(),
                 'template_id' => $template_id
             ));
-            wp_send_json_error(array('message' => __('Failed to save template.', 'ipsit-invoice-generator')));
-        }
+                wp_send_json_error(array('message' => __('Failed to save template.', 'ipsit-invoice-generator')));
+            }
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
     }
     
     /**
@@ -660,6 +690,7 @@ class IG_Ajax {
      */
     public function delete_template() {
         $this->verify_nonce(IG_Config::CAP_MANAGE_TEMPLATES);
+        // phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified in verify_nonce() above
         
         // Rate limiting
         if (!IG_Helper::check_rate_limit('delete_template')) {
@@ -675,11 +706,11 @@ class IG_Ajax {
         $db = IG_Database::get_instance();
         
         try {
-            $result = $db->delete_template($template_id);
-            
-            if ($result !== false) {
-                wp_send_json_success(array('message' => __('Template deleted successfully.', 'ipsit-invoice-generator')));
-            } else {
+        $result = $db->delete_template($template_id);
+        
+        if ($result !== false) {
+            wp_send_json_success(array('message' => __('Template deleted successfully.', 'ipsit-invoice-generator')));
+        } else {
                 throw new Exception('Failed to delete template from database');
             }
         } catch (Exception $e) {
@@ -689,6 +720,7 @@ class IG_Ajax {
             ));
             wp_send_json_error(array('message' => __('Failed to delete template.', 'ipsit-invoice-generator')));
         }
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
     }
     
     /**
@@ -696,11 +728,14 @@ class IG_Ajax {
      */
     public function preview_template() {
         $this->verify_nonce();
+        // phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified in verify_nonce() above
         
-        $template_id = isset($_POST['template_id']) ? sanitize_text_field($_POST['template_id']) : null;
-        $invoice_id = isset($_POST['invoice_id']) ? intval($_POST['invoice_id']) : 0;
-        $html_content = isset($_POST['html_content']) ? wp_kses_post($_POST['html_content']) : '';
-        $css_content = isset($_POST['css_content']) ? wp_strip_all_tags($_POST['css_content']) : '';
+        $template_id = isset($_POST['template_id']) ? sanitize_text_field(wp_unslash($_POST['template_id'])) : null;
+        $invoice_id = isset($_POST['invoice_id']) ? intval(wp_unslash($_POST['invoice_id'])) : 0;
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized by wp_kses_post()
+        $html_content = isset($_POST['html_content']) ? wp_kses_post(wp_unslash($_POST['html_content'])) : '';
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized by wp_strip_all_tags()
+        $css_content = isset($_POST['css_content']) ? wp_strip_all_tags(wp_unslash($_POST['css_content'])) : '';
         
         if ($invoice_id <= 0) {
             wp_send_json_error(array('message' => __('Please select an invoice to preview.', 'ipsit-invoice-generator')));
@@ -740,6 +775,7 @@ class IG_Ajax {
         }
         
         wp_send_json_success(array('html' => $html));
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
     }
     
     /**
@@ -747,6 +783,7 @@ class IG_Ajax {
      */
     public function save_settings() {
         $this->verify_nonce(IG_Config::CAP_MANAGE_SETTINGS);
+        // phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified in verify_nonce() above
         
         // Rate limiting
         if (!IG_Helper::check_rate_limit('save_settings')) {
@@ -754,22 +791,22 @@ class IG_Ajax {
         }
         
         $settings = array(
-            'ipsit_ig_invoice_number_prefix' => isset($_POST['invoice_number_prefix']) ? sanitize_text_field($_POST['invoice_number_prefix']) : '',
-            'ipsit_ig_invoice_number_suffix' => isset($_POST['invoice_number_suffix']) ? sanitize_text_field($_POST['invoice_number_suffix']) : '',
-            'ipsit_ig_invoice_number_padding' => isset($_POST['invoice_number_padding']) ? intval($_POST['invoice_number_padding']) : 4,
-            'ipsit_ig_currency' => isset($_POST['currency']) ? sanitize_text_field($_POST['currency']) : 'USD',
-            'ipsit_ig_currency_symbol' => isset($_POST['currency_symbol']) ? sanitize_text_field($_POST['currency_symbol']) : '$',
-            'ipsit_ig_date_format' => isset($_POST['date_format']) ? sanitize_text_field($_POST['date_format']) : 'Y-m-d',
-            'ipsit_ig_email_from_name' => isset($_POST['email_from_name']) ? sanitize_text_field($_POST['email_from_name']) : '',
-            'ipsit_ig_email_from_email' => isset($_POST['email_from_email']) ? sanitize_email($_POST['email_from_email']) : '',
-            'ipsit_ig_email_subject' => isset($_POST['email_subject']) ? sanitize_text_field($_POST['email_subject']) : '',
-            'ipsit_ig_default_template' => isset($_POST['default_template']) ? intval($_POST['default_template']) : 0,
+            'ipsit_ig_invoice_number_prefix' => isset($_POST['invoice_number_prefix']) ? sanitize_text_field(wp_unslash($_POST['invoice_number_prefix'])) : '',
+            'ipsit_ig_invoice_number_suffix' => isset($_POST['invoice_number_suffix']) ? sanitize_text_field(wp_unslash($_POST['invoice_number_suffix'])) : '',
+            'ipsit_ig_invoice_number_padding' => isset($_POST['invoice_number_padding']) ? intval(wp_unslash($_POST['invoice_number_padding'])) : 4,
+            'ipsit_ig_currency' => isset($_POST['currency']) ? sanitize_text_field(wp_unslash($_POST['currency'])) : 'USD',
+            'ipsit_ig_currency_symbol' => isset($_POST['currency_symbol']) ? sanitize_text_field(wp_unslash($_POST['currency_symbol'])) : '$',
+            'ipsit_ig_date_format' => isset($_POST['date_format']) ? sanitize_text_field(wp_unslash($_POST['date_format'])) : 'Y-m-d',
+            'ipsit_ig_email_from_name' => isset($_POST['email_from_name']) ? sanitize_text_field(wp_unslash($_POST['email_from_name'])) : '',
+            'ipsit_ig_email_from_email' => isset($_POST['email_from_email']) ? sanitize_email(wp_unslash($_POST['email_from_email'])) : '',
+            'ipsit_ig_email_subject' => isset($_POST['email_subject']) ? sanitize_text_field(wp_unslash($_POST['email_subject'])) : '',
+            'ipsit_ig_default_template' => isset($_POST['default_template']) ? intval(wp_unslash($_POST['default_template'])) : 0,
             'ipsit_ig_show_company_name_with_logo' => isset($_POST['show_company_name_with_logo']) ? 1 : 0,
-            'ipsit_ig_design_primary_color' => isset($_POST['design_primary_color']) ? sanitize_hex_color($_POST['design_primary_color']) : '',
-            'ipsit_ig_design_secondary_color' => isset($_POST['design_secondary_color']) ? sanitize_hex_color($_POST['design_secondary_color']) : '',
-            'ipsit_ig_design_success_color' => isset($_POST['design_success_color']) ? sanitize_hex_color($_POST['design_success_color']) : '',
-            'ipsit_ig_design_error_color' => isset($_POST['design_error_color']) ? sanitize_hex_color($_POST['design_error_color']) : '',
-            'ipsit_ig_design_warning_color' => isset($_POST['design_warning_color']) ? sanitize_hex_color($_POST['design_warning_color']) : '',
+            'ipsit_ig_design_primary_color' => isset($_POST['design_primary_color']) ? sanitize_hex_color(wp_unslash($_POST['design_primary_color'])) : '',
+            'ipsit_ig_design_secondary_color' => isset($_POST['design_secondary_color']) ? sanitize_hex_color(wp_unslash($_POST['design_secondary_color'])) : '',
+            'ipsit_ig_design_success_color' => isset($_POST['design_success_color']) ? sanitize_hex_color(wp_unslash($_POST['design_success_color'])) : '',
+            'ipsit_ig_design_error_color' => isset($_POST['design_error_color']) ? sanitize_hex_color(wp_unslash($_POST['design_error_color'])) : '',
+            'ipsit_ig_design_warning_color' => isset($_POST['design_warning_color']) ? sanitize_hex_color(wp_unslash($_POST['design_warning_color'])) : '',
         );
         
         foreach ($settings as $key => $value) {
@@ -777,6 +814,7 @@ class IG_Ajax {
         }
         
         wp_send_json_success(array('message' => __('Settings saved successfully.', 'ipsit-invoice-generator')));
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
     }
 }
 
